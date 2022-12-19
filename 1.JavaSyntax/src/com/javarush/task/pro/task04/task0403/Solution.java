@@ -11,13 +11,32 @@ public class Solution {
         Scanner scanner = new Scanner(System.in);
         String stop = scanner.nextLine();
         int count = scanner.nextInt();
-        String text = "ENTER";
         int sum = 0;
+        String text = "ENTER";
 
-        while (!stop.equalsIgnoreCase(text)) {
+        while (scanner.hasNextInt()) {
             sum += count;
         }
-        System.out.println(sum);
+
+        if (stop.equalsIgnoreCase(text)) {
+            System.out.println(sum);
+        }
+
+
+
+
+
+
+
+        /*if (!stop.equalsIgnoreCase("ENTER")) {
+            sum += count;
+            System.out.println(sum);
+        } else {
+            while (!stop.equalsIgnoreCase("ENTER")) {
+                count++;
+            }
+        }*/
+
 
     }
 }
