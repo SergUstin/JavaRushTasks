@@ -16,10 +16,11 @@ public class Solution {
         int sum = 0;
 
         for (int i = start; i < end; i++) {
-            sum += i;
-            if (sum % multiple == 0) {
-                System.out.println(sum);
+            if (i % multiple == 0) {
+                sum += i;
             }
+            continue;
         }
+        System.out.println(sum);
     }
 }
