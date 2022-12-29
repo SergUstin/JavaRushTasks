@@ -14,23 +14,13 @@ public class Solution {
         Scanner scanner = new Scanner(System.in);
         int number = scanner.nextInt();
         array = new int[number];
-        int min = 0;
 
         for (int i = 0; i < number; i++) {
             array[i] = scanner.nextInt();
         }
 
-        for (int i = 0; i < array.length; i++) {
-            int tmp = array[i];
-            for (int j = i + 1; j < array.length; j++) {
-                int tmp1 = array[j];
-                if (tmp < tmp1) {
-                    min = tmp1;
-                }
-            }
-        }
-        System.out.println(min);
+        Arrays.sort(array);
 
-        System.out.println(Arrays.toString(array));
+        System.out.println(array[0]);
     }
 }

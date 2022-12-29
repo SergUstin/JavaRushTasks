@@ -17,7 +17,7 @@ public class Solution {
 
     public static void printArray() {
         for (int[] row : array) {
-            System.out.println(Arrays.toString(row));
+            //System.out.println(Arrays.toString(row));
         }
         System.out.println();
     }
