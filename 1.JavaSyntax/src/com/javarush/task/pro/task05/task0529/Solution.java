@@ -41,15 +41,11 @@ public class Solution {
             for (int j = 0; j < width; j++) {
                 if (bombs[i][j] == 1 && field[i][j] == robotank) {
                     field[i][j] = hit;
+                } else if (bombs[i][j] != 1 && field[i][j] == robotank) {
+                    field[i][j] = hit;
                 }
             }
         }
-
-
-
-
-
-
 
 
         for (int i = 0; i < field.length; i++) {
