@@ -21,11 +21,13 @@ public class Solution {
     public static void main(String[] args) {
         diabloPosition = getRandomNumber(4);
         findDiablo();
+        battle();
     }
 
     public static int getRandomNumber(int range) {
         return (int) (Math.random() * range) + 1;
     }
+
     public static void findDiablo() {
         System.out.println(getFirstPositionPhrase);
         Scanner scanner = new Scanner(System.in);
@@ -34,7 +36,7 @@ public class Solution {
             if (diabloPosition == number) {
                 System.out.println(findDiabloPhrase);
                 return;
-            }else {
+            } else {
                 System.out.println(getPositionPhrase);
             }
         }
@@ -51,6 +53,17 @@ public class Solution {
     }
     public static int diabloDefends() {
         return getRandomNumber(3);
+    }
+    public static void battle() {
+        while (amigoLives > 0 && diabloLives > 0) {
+            if (amigoAttacks() == diabloDefends()) {
+                System.out.println(diabloDefendPhrase);
+                amigoLostLife();
+            } else {
+                System.out.println(amigoAttackPhrase);
+                diabloLostLife();
+            }
+        }
     }
 
 }
