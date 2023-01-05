@@ -1,6 +1,7 @@
 package com.javarush.task.pro.task05.task0529;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 /* 
 Галаксианские роботанки (1)
@@ -27,26 +28,30 @@ public class Solution {
             field[i][j] = robotank;
         }
 
-        for (int i = 0; i < bombs.length; i++) {
-            for (int j = 0; j < 10;) {
-                int k = (int)(Math.random() * width);
-                if (bombs[i][k] == 0) {
-                    bombs[i][k] = 1;
-                    j++;
+        int countsRobotank = 10;
+
+        while (countsRobotank > 0) {
+            bombs = new int[height][width];
+
+            for (int i = 0; i < bombs.length; i++) {
+                for (int j = 0; j < 10; ) {
+                    int k = (int) (Math.random() * width);
+                    if (bombs[i][k] == 0) {
+                        bombs[i][k] = 1;
+                        j++;
+                    }
+                }
+            }
+
+            for (int i = 0; i < height; i++) {
+                for (int j = 0; j < width; j++) {
+                    if (bombs[i][j] == 1 && Objects.equals(field[i][j], robotank)) {
+                        field[i][j] = hit;
+                        countsRobotank--;
+                    }
                 }
             }
         }
-
-        for (int i = 0; i < height; i++) {
-            for (int j = 0; j < width; j++) {
-                if (bombs[i][j] == 1 && field[i][j] == robotank) {
-                    field[i][j] = hit;
-                } else if (bombs[i][j] != 1 && field[i][j] == robotank) {
-                    field[i][j] = hit;
-                }
-            }
-        }
-
 
         for (int i = 0; i < field.length; i++) {
             for (int j = 0; j < field[i].length; j++) {
@@ -54,7 +59,5 @@ public class Solution {
             }
             System.out.println();
         }
-
-
     }
 }
