@@ -7,10 +7,14 @@ public class Nimrod {
     public int health = 1_000_000;
 
     public void defend (int defend) {
-        health -= defend;
+        health -= applyShield(defend);
     }
 
     public int attack() {
         return rocket;
+    }
+
+    public byte applyShield(int shield) {
+        return (byte) shield;
     }
 }
