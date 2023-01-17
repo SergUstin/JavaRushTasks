@@ -15,9 +15,9 @@ public class Solution {
     }
 
     public static int min(int[] ints) {
-        int min = 0;
-        for (int i = 0; i < getArrayOfTenElements().length; i++) {
-            min = Math.min(i, i);
+        int min = ints[0];
+        for (int i = 0; i < ints.length; i++) {
+            min = Math.min(min, ints[i]);
         }
         return min;
     }
