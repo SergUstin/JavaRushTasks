@@ -4,6 +4,8 @@ package com.javarush.task.pro.task08.task0818;
 Путь через аномалию
 */
 
+import java.util.Arrays;
+
 public class Solution {
 
     public static int[][] anomalySpace = new int[][]{
@@ -16,7 +18,16 @@ public class Solution {
     public static double[] safeRoute = new double[25];
 
     public static void main(String[] args) {
-        //напишите тут ваш код
-
+        for (int i = 0; i < anomalySpace.length; i++) {
+            int x = anomalySpace[i][0];
+            int y = anomalySpace[i][1];
+            int z = anomalySpace[i][2];
+            double res = Math.sin(x) * Math.PI + Math.cos(y) * Math.min(x, Math.min(y, z)) +
+                    Math.tan(y) / Math.log(z);
+            if (res >= 100 && res <= 200) {
+                safeRoute[i] = res;
+            }
+        }
+        System.out.println(Arrays.toString(safeRoute));
     }
 }
