@@ -34,6 +34,7 @@ public class Solution {
         for (int i = 0; i < binaryNumber.length(); i++) {
             char charAt = binaryNumber.charAt(binaryNumber.length() - 1 - i);
             decimalNumber = decimalNumber + Integer.parseInt(charAt + "") * (int) Math.pow(2, i);
+            //Character.getNumericValue(charAt);
         }
         return decimalNumber;
     }
