@@ -16,48 +16,61 @@ public class Solution {
     }
 
     public static String toHex(String binaryNumber) {
+        if (binaryNumber == null || binaryNumber.isEmpty() || !binaryNumber.matches("[01]+")) {
+            return "";
+        }
         String hexNumber = "";
-        String fourBit = binaryNumber.substring(0, 4);
-        String oneHex = "";
-        if (fourBit.equals("0000")) {
-            oneHex = "0";
-        } else if (fourBit.equals("0001")) {
-            oneHex = "1";
-        } else if (fourBit.equals("0010")) {
-            oneHex = "2";
-        } else if (fourBit.equals("0011")) {
-            oneHex = "3";
-        } else if (fourBit.equals("0100")) {
-            oneHex = "4";
-        } else if (fourBit.equals("0101")) {
-            oneHex = "5";
-        } else if (fourBit.equals("0110")) {
-            oneHex = "6";
-        } else if (fourBit.equals("0111")) {
-            oneHex = "7";
-        } else if (fourBit.equals("1000")) {
-            oneHex = "8";
-        } else if (fourBit.equals("1001")) {
-            oneHex = "9";
-        } else if (fourBit.equals("1010")) {
-            oneHex = "a";
-        } else if (fourBit.equals("1011")) {
-            oneHex = "b";
-        } else if (fourBit.equals("1100")) {
-            oneHex = "c";
-        } else if (fourBit.equals("1101")) {
-            oneHex = "d";
-        } else if (fourBit.equals("1110")) {
-            oneHex = "e";
-        } else if (fourBit.equals("1111")) {
-            oneHex = "f";
+        while (binaryNumber.length() % 4 != 0) {
+            binaryNumber = "0" + binaryNumber;
+        }
+        while (binaryNumber.length() > 0) {
+            String fourBit = binaryNumber.substring(0, 4);
+            String oneHex = "";
+            if (fourBit.equals("0000")) {
+                oneHex = "0";
+            } else if (fourBit.equals("0001")) {
+                oneHex = "1";
+            } else if (fourBit.equals("0010")) {
+                oneHex = "2";
+            } else if (fourBit.equals("0011")) {
+                oneHex = "3";
+            } else if (fourBit.equals("0100")) {
+                oneHex = "4";
+            } else if (fourBit.equals("0101")) {
+                oneHex = "5";
+            } else if (fourBit.equals("0110")) {
+                oneHex = "6";
+            } else if (fourBit.equals("0111")) {
+                oneHex = "7";
+            } else if (fourBit.equals("1000")) {
+                oneHex = "8";
+            } else if (fourBit.equals("1001")) {
+                oneHex = "9";
+            } else if (fourBit.equals("1010")) {
+                oneHex = "a";
+            } else if (fourBit.equals("1011")) {
+                oneHex = "b";
+            } else if (fourBit.equals("1100")) {
+                oneHex = "c";
+            } else if (fourBit.equals("1101")) {
+                oneHex = "d";
+            } else if (fourBit.equals("1110")) {
+                oneHex = "e";
+            } else if (fourBit.equals("1111")) {
+                oneHex = "f";
+            }
+            hexNumber += oneHex;
+            binaryNumber = binaryNumber.substring(4);
         }
 
 
-        return null;
+        return hexNumber;
     }
 
     public static String toBinary(String hexNumber) {
+        if (hexNumber == null || hexNumber.isEmpty() || !hexNumber.matches("[0-9a-f]+")) {
+            return "";
+        }
         String binaryNumber = "";
         for (int i = 0; i < hexNumber.length(); i++) {
             String oneHex = String.valueOf(hexNumber.charAt(i));
