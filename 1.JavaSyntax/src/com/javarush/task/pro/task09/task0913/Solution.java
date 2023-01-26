@@ -12,15 +12,15 @@ public class Solution {
         int indexFromLastWord = getIndexFromLastWord(string, word);
         System.out.println("Индекс первого символа первого слова \"" + word + "\" равен - " + indexFromFirstWord);
         System.out.println("Индекс первого символа последнего слова \"" + word + "\" равен - " + indexFromLastWord);
+
+
     }
 
     public static int getIndexFromFirstWord(String string, String word) {
-        //напишите тут ваш код
-        return 0;
+        return string.indexOf(word);
     }
 
     public static int getIndexFromLastWord(String string, String word) {
-        //напишите тут ваш код
-        return 0;
+        return string.lastIndexOf(word);
     }
 }
