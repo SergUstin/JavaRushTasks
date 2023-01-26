@@ -5,6 +5,7 @@ package com.javarush.task.pro.task09.task0921;
 */
 
 import java.util.Arrays;
+import java.util.Locale;
 
 public class NimrodAi {
     
@@ -24,7 +25,21 @@ public class NimrodAi {
     }
 
     public static void replaceTarget(PastryLoader[] pastryLoaders) {
-        //напишите тут ваш код
+        for (int i = 0; i < pastryLoaders.length; i++) {
+            PastryLoader pastryLoader = pastryLoaders[i];
+            String[][][] array = pastryLoader.memory;
+            for (int j = 0; j < array.length; j++) {
+                for (int k = 0; k < array[j].length; k++) {
+                    for (int l = 0; l < array[j][k].length; l++) {
+                        String str = array[j][k][l];
+                        String lowerCase = str.toLowerCase();
+                        if (lowerCase.contains("nimrod")) {
+                            array[j][k][l] = lowerCase.replaceAll("nimrod", "pirate ship");
+                        }
+                    }
+                }
+            }
+        }
 
     }
 }
