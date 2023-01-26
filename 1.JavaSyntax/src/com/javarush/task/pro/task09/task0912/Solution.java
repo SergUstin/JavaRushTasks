@@ -16,15 +16,24 @@ public class Solution {
     }
 
     public static String checkProtocol(String url) {
-        String non = "неизвестный";
-        if (true) {
-            return non;
+        if (url.startsWith("https")) {
+            return "https";
+        } else if (url.startsWith("http")) {
+            return "http";
         }
-        return url;
+        return "неизвестный";
     }
 
     public static String checkDomain(String url) {
-        //напишите тут ваш код
+        if (url.endsWith("com")) {
+            return "com";
+        } else if (url.endsWith("net")) {
+            return "net";
+        } else if (url.endsWith("org")) {
+            return "org";
+        } else if (url.endsWith("ru")) {
+            return "ru";
+        }
         return "неизвестный";
     }
 }
