@@ -41,6 +41,7 @@ public class NimrodAi {
         String[] scanResult = RoomScanner.scanRoom(roomName);
         System.out.printf("В %s обнаружено: %s\n", roomName, Arrays.toString(scanResult));
 
+        //напишите тут ваш код
 
         return false;
     }
