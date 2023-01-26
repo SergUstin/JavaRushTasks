@@ -17,7 +17,7 @@ public class Solution {
 
     public static String checkProtocol(String url) {
         String non = "неизвестный";
-        if (!url.matches("http") && !url.matches("https")) {
+        if (true) {
             return non;
         }
         return url;
