@@ -13,8 +13,7 @@ public class Solution {
 
     public static String reverseString(String string) {
         StringBuilder stringBuilder = new StringBuilder(string);
-        stringBuilder.reverse();
-        String str = stringBuilder.toString();
-        return str;
+        return stringBuilder.reverse().toString();
+//        return new StringBuilder(string).reverse().toString();
     }
 }
