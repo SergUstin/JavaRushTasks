@@ -27,7 +27,12 @@ public class Iphone {
             return false;
         }
 
+        if (!(obj instanceof Iphone)) {
+            return false;
+        }
+
         Iphone iphone = (Iphone) obj;
+
 
         if (this.model == null) {
             return false;
