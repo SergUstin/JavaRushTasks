@@ -17,12 +17,36 @@ public class Iphone {
         this.price = price;
     }
 
-    public boolean equals (Objects objects) {
-        if (objects == null) {
+    @Override
+    public boolean equals (Object obj) {
+        if (this == obj) {
+           return true;
+        }
+
+        if (obj == null) {
             return false;
         }
 
-        return true;
+        Iphone iphone = (Iphone) obj;
+
+        if (this.model == null) {
+            return false;
+        }
+
+        if (this.color == null) {
+            return false;
+        }
+
+        if (this.price != iphone.price) {
+            return false;
+        }
+
+        return this.model.equals(iphone.model) && this.color.equals(iphone.color);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(model, color, price);
     }
 
     public static void main(String[] args) {
