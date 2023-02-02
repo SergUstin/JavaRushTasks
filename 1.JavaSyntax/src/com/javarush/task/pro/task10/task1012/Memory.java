@@ -16,12 +16,17 @@ public class Memory {
     }
 
     public static void executeDefragmentation(String[] array) {
-        for (int i = 1; i < array.length; i++) {
-            if (array[i] == null) {
-                array[i] = array[i];
+        String[] tmp = new String[array.length];
+        int index = 0;
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] != null) {
+                tmp[index] = array[i];
+                index++;
             }
+        }
 
-            // Погуглить сортировку пузырьком
+        for (int i = 0; i < array.length; i++) {
+            array[i] = tmp[i];
         }
     }
 }
