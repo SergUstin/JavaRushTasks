@@ -12,7 +12,7 @@ public class Cosmoport {
     public static RoboZombie[] roboZombies = Cosmoport.RoboZombieFactory.produce();
 
     public static void main(String[] args) {
-       // System.out.println(Arrays.toString(roboZombies));
+       System.out.println(Arrays.toString(roboZombies));
     }
 
     public static class Compiler {
@@ -26,7 +26,7 @@ public class Cosmoport {
             RoboZombie[] army = new RoboZombie[new Random().nextInt(100)];
             for (int i = 0; i < army.length; i++) {
                 army[i] = new RoboZombie();
-
+                COMPILER.compile(army[i]);
             }
 
             return army;
@@ -40,7 +40,10 @@ public class Cosmoport {
         public String toString() {
             return "RoboZombie{" +
                     "id='" + hashCode() + '\'' +
+                    "destiny='" + destiny + '\'' +
                     '}';
         }
+
+
     }
 }
