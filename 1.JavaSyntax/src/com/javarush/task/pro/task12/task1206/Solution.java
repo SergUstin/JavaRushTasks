@@ -15,16 +15,35 @@ public class Solution {
     }
 
     public static int countDigits(String string) {
+        char[] chars = string.toCharArray();
         int count = 0;
-
-        return 0;
+        for (char aChar : chars) {
+            if (Character.isDigit(aChar)) {
+                count++;
+            }
+        }
+        return count;
     }
 
     public static int countLetters(String string) {
-        return 0;
+        char[] chars = string.toCharArray();
+        int count = 0;
+        for (char aChar : chars) {
+            if (Character.isLetter(aChar)) {
+                count++;
+            }
+        }
+        return count;
     }
 
     public static int countSpaces(String string) {
-        return 0;
+        char[] chars = string.toCharArray();
+        int count = 0;
+        for (char aChar : chars) {
+            if (Character.isSpaceChar(aChar)) {
+                count++;
+            }
+        }
+        return count;
     }
 }
