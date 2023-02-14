@@ -13,14 +13,14 @@ public class Solution {
 
     public static void main(String[] args) {
         convertAccounts();
-        registerAccount(Arrays.toString(Accounts.getAccounts()));
-        System.out.println(accountsList);
+        System.out.println(Accounts.getAccounts());
+        registerAccount("Амиго");
+        registerAccount("Диего");
+        //System.out.println(accountsList);
     }
 
     public static void convertAccounts() {
-        for (int i = 0; i < Accounts.getAccounts().length; i++) {
-            accountsList.add(Arrays.toString(Accounts.getAccounts()));
-        }
+        accountsList.addAll(Arrays.asList(Accounts.getAccounts()));
     }
 
     public static void registerAccount(String username) {
