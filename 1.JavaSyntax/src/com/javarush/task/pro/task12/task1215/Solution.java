@@ -38,7 +38,10 @@ public class Solution {
     public static void removeGlassesReverse(ArrayList<String> glasses) {
         System.out.println("Начинаем разбирать пирамиду...");
 
-        //напишите тут ваш код
+        for (int i = 0; i < glasses.size(); i++) {
+            glasses.remove(glasses.size() - 1);
+            i--;
+        }
 
         if(glasses.size() == 0) {
             System.out.println("Пирамида разобрана!");
