@@ -13,19 +13,25 @@ public class Solution {
 
     public static void main(String[] args) {
         convertAccounts();
-        System.out.println(Accounts.getAccounts());
+        System.out.println(accountsList);
         registerAccount("Амиго");
         registerAccount("Диего");
-        //System.out.println(accountsList);
+       // System.out.println(accountsList);
     }
 
     public static void convertAccounts() {
-        accountsList.addAll(Arrays.asList(Accounts.getAccounts()));
+        for (int i = 0; i < Accounts.getAccounts().length; i++) {
+            accountsList.add(Accounts.getAccounts()[i]);
+            //i--;
+        }
     }
 
     public static void registerAccount(String username) {
-        if (accountsList.contains(username)) {
-            accountsList.add(username);
+        for (int i = 0; i < accountsList.size(); i++) {
+            if (!accountsList.get(i).equals(username)) {
+                accountsList.add(username);
+                i--;
+            }
         }
     }
 }
