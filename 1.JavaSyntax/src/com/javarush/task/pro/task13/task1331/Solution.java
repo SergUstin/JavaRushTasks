@@ -11,7 +11,7 @@ public class Solution {
 
     public static Set<String> matrixLogs = new HashSet<>();
 
-    public static int numberOfBugs;
+    public static int numberOfBugs = 58;
 
     public static void main(String[] args) {
         fillMatrixLog();
