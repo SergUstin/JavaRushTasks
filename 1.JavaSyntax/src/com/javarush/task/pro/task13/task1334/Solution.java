@@ -17,15 +17,14 @@ public class Solution {
     }
 
     public static void setRewards() {
-        /*
-        Voter voter = new Voter(Voter.);
-        for (var voterMapEntry : Voter.generateVoters()) {
-            if (Voter.)) {
-
+        List<Voter> voters = Voter.generateVoters();
+        for (Voter voter : voters) {
+            if (voter.getPersonalQuality().equals("Good")) {
+                corporatePyramid.put(voter, new Rewards().getGoodRewardsMap());
+            } else if (voter.getPersonalQuality().equals("Holy")) {
+                corporatePyramid.put(voter, new Rewards().getHolyRewardsMap());
             }
         }
-
-         */
     }
 
     public static void printMap(Map<?, ?> map) {
