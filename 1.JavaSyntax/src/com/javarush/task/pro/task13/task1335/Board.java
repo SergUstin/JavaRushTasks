@@ -7,8 +7,10 @@ import java.util.Objects;
 
 public class Board {
     private final List<Node> boardNodes = new LinkedList<>(
-            Arrays.asList(new Node("snakeTail"), new Node("snakeBody"), new Node("board"), new Node("snakeBody"), new Node("board"),
-                    new Node("snakeBody"), new Node("board"), new Node("snakeBody"), new Node("board"), new Node("snakeHead")));
+            Arrays.asList(new Node("snakeTail"), new Node("snakeBody"), new Node("board"),
+                    new Node("snakeBody"), new Node("board"),
+                    new Node("snakeBody"), new Node("board"), new Node("snakeBody"),
+                    new Node("board"), new Node("snakeHead")));
 
     public List<Node> getBoardNodes() {
         return boardNodes;

@@ -15,14 +15,13 @@ public class Solution {
 
     public static List<Board.Node> clearBoard() {
         Board board = new Board();
-        ArrayList<Board.Node> copy = new ArrayList<>(board.getBoardNodes());
+        List<Board.Node> copy = board.getBoardNodes();
         for (Board.Node node : copy) {
-            Board.Node node1 = new Board.Node(node.getData());
-            if (node1.getData().equals("snake")) {
-                node1.setData("board");
+            if (!node.getData().equals("board")) {
+                node.setData("board");
             }
         }
-        return null;
+        return copy;
     }
 
     private static void printList(List<?> list) {
