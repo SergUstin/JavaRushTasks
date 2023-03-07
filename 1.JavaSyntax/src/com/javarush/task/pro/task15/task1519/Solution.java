@@ -15,16 +15,12 @@ public class Solution {
         Scanner scanner = new Scanner(System.in);
         Path sourceDirectory = Path.of(scanner.nextLine());
         Path targetDirectory = Path.of(scanner.nextLine());
-        try (DirectoryStream<Path> source = Files.newDirectoryStream(sourceDirectory);
-            DirectoryStream<Path> target = Files.newDirectoryStream(targetDirectory)) {
+        try (DirectoryStream<Path> source = Files.newDirectoryStream(sourceDirectory)) {
             for (Path sourcePath : source) {
-                for (Path targetPath : target) {
-                    if (Files.isRegularFile(sourcePath) && Files.isRegularFile(targetPath)) {
-                        Files.copy(sourcePath, targetPath);
-                    }
+                if (Files.isRegularFile(sourcePath)) {
+                    Files.copy(sourcePath, targetDirectory.resolve(sourcePath.getFileName()));
                 }
             }
         }
     }
 }
-
