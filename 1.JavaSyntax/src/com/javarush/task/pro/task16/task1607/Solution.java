@@ -16,26 +16,22 @@ public class Solution {
     }
 
     static LocalDate nowExample() {
-        //напишите тут ваш код
-
-        return null;
+        LocalDate localDate = LocalDate.now();
+        return localDate;
     }
 
     static LocalDate ofExample() {
-        //напишите тут ваш код
-
-        return null;
+        LocalDate localDate = LocalDate.of(2020, 9, 12);
+        return localDate;
     }
 
     static LocalDate ofYearDayExample() {
-        //напишите тут ваш код
-
-        return null;
+        LocalDate localDate = LocalDate.ofYearDay(2020, 256);
+        return localDate;
     }
 
     static LocalDate ofEpochDayExample() {
-        //напишите тут ваш код
-
-        return null;
+        LocalDate localDate = LocalDate.ofEpochDay(18517);
+        return localDate;
     }
 }
