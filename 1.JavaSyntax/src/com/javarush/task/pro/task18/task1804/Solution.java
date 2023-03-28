@@ -2,6 +2,7 @@ package com.javarush.task.pro.task18.task1804;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 /* 
 Знакомство с лямбда-выражением
@@ -22,12 +23,7 @@ public class Solution {
     }
 
     public static void sortNumbers(ArrayList<Integer> numbers) {
-        Comparator<Integer> comparator = new Comparator<Integer>() {
-            @Override
-            public int compare(Integer i1, Integer i2) {
-                return i1 - i2;
-            }
-        };
+        Comparator<Integer> comparator = (i1, i2) -> i1 - i2;
         Collections.sort(numbers, comparator);
     }
 }

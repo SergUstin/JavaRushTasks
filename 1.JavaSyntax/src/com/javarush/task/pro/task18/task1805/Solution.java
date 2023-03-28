@@ -2,6 +2,7 @@ package com.javarush.task.pro.task18.task1805;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 /* 
 Прощание с лямбда-выражением
@@ -22,6 +23,10 @@ public class Solution {
     }
 
     public static void sortStringsByLength(ArrayList<String> strings) {
-        Collections.sort(strings, (s1, s2) -> s1.length() - s2.length());
+        StringComparator stringComparator = new StringComparator();
+        Collections.sort(strings, stringComparator);
+
+//        strings.sort(comparator);
+//        Collections.sort(strings, (s1, s2) -> s1.length() - s2.length());
     }
 }
