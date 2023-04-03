@@ -27,8 +27,10 @@ public class Solution {
         }
 
         @Override
-        public DBObject initializeIdAndName(long id, String name) {
-            return null;
+        public User initializeIdAndName(long id, String name) {
+            this.name = name;
+            this.id = id;
+            return this;
         }
     }
 }
