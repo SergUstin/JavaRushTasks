@@ -6,29 +6,11 @@ public class Game2048 extends Game {
     private static final int SIDE = 4;
     private int[][] gameField = new int[SIDE][SIDE];
 
-
-
-
-    private void createNewNumber(){
-        int x = getRandomNumber(SIDE);
-        int y = getRandomNumber(SIDE);
-        int number = getRandomNumber(10);
-        if (gameField[x][y] == 0) {
-            if (number < 9) {
-                gameField[x][y] = 2;
-            } else {
-                gameField[x][y] = 4;
-            }
-        } else {
-            createNewNumber();
-        }
-    }
-    private void drawScene() {
-        for (int i = 0; i < gameField.length; i++) {
-            for (int j = 0; j < gameField[i].length; j++) {
-                setCellColor(i, j, Color.DARKOLIVEGREEN);
-            }
-        }
+    @Override
+    public void initialize() {
+        setScreenSize(SIDE, SIDE);
+        createGame();
+        drawScene();
     }
 
     private void createGame() {
@@ -36,11 +18,62 @@ public class Game2048 extends Game {
         createNewNumber();
     }
 
-    @Override
-    public void initialize() {
-        setScreenSize(SIDE, SIDE);
-        createGame();
-        drawScene();
+    private void createNewNumber() {
+        boolean isCreated = false;
+        do {
+            int x = getRandomNumber(SIDE);
+            int y = getRandomNumber(SIDE);
+            if (gameField[y][x] == 0) {
+                gameField[y][x] = getRandomNumber(10) < 9 ? 2 : 4;
+                isCreated = true;
+            }
+        }
+        while (!isCreated);
+    }
+
+    private void setCellColoredNumber(int x, int y, int value) {
+        Color color = getColorByValue(value);
+        String str = value > 0 ? "" + value : "";
+        setCellValueEx(x, y, color, str);
+    }
+
+    private Color getColorByValue(int value) {
+        switch (value) {
+            case 0:
+                return Color.WHITE;
+            case 2:
+                return Color.PLUM;
+            case 4:
+                return Color.SLATEBLUE;
+            case 8:
+                return Color.DODGERBLUE;
+            case 16:
+                return Color.DARKTURQUOISE;
+            case 32:
+                return Color.MEDIUMSEAGREEN;
+            case 64:
+                return Color.LIMEGREEN;
+            case 128:
+                return Color.DARKORANGE;
+            case 256:
+                return Color.SALMON;
+            case 512:
+                return Color.ORANGERED;
+            case 1024:
+                return Color.DEEPPINK;
+            case 2048:
+                return Color.MEDIUMVIOLETRED;
+            default:
+                return Color.NONE;
+        }
+    }
+
+    private void drawScene() {
+        for (int y = 0; y < SIDE; y++) {
+            for (int x = 0; x < SIDE; x++) {
+                setCellColoredNumber(x, y, gameField[y][x]);
+            }
+        }
     }
 }
 
