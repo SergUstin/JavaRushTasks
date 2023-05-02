@@ -110,7 +110,7 @@ public class Game2048 extends Game {
     }
 
     private void moveDown() {
-
+        
     }
 
     private boolean compressRow(int[] row) {
@@ -139,6 +139,16 @@ public class Game2048 extends Game {
             }
         }
         return result;
+    }
+
+    private void rotateClockwise() {
+        int[][] result = new int[SIDE][SIDE];
+        for (int i = 0; i < SIDE; i++) {
+            for (int j = 0; j < SIDE; j++) {
+                result[j][SIDE - 1 - i] = gameField[i][j];
+            }
+        }
+        gameField = result;
     }
 
     private void drawScene() {
