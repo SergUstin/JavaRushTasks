@@ -17,13 +17,16 @@ public class Game2048 extends Game {
     public void onKeyPress(Key key) {
         if (key == Key.UP) {
             moveUp();
+        } else if (key == Key.RIGHT) {
+            moveRight();
         } else if (key == Key.DOWN) {
             moveDown();
         } else if (key == Key.LEFT) {
             moveLeft();
-        } else if (key == Key.RIGHT) {
-            moveRight();
+        } else {
+            return;
         }
+        drawScene();
     }
 
     private void createGame() {
@@ -82,15 +85,32 @@ public class Game2048 extends Game {
     }
 
     private void moveLeft() {
+        boolean isNewNumberNeeded = false;
+        for (int[] row : gameField) {
+            boolean wasCompressed = compressRow(row);
+            boolean wasMerged = mergeRow(row);
+            if (wasMerged) {
+                compressRow(row);
+            }
+            if (wasCompressed || wasMerged) {
+                isNewNumberNeeded = true;
+            }
+        }
+        if (isNewNumberNeeded) {
+            createNewNumber();
+        }
     }
 
     private void moveRight() {
+
     }
 
     private void moveUp() {
+
     }
 
     private void moveDown() {
+
     }
 
     private boolean compressRow(int[] row) {
