@@ -5,6 +5,7 @@ import com.javarush.engine.cell.*;
 public class Game2048 extends Game {
     private static final int SIDE = 4;
     private int[][] gameField = new int[SIDE][SIDE];
+    private boolean isGameStopped = false;
 
     @Override
     public void initialize() {
@@ -35,6 +36,11 @@ public class Game2048 extends Game {
     }
 
     private void createNewNumber() {
+        if (getMaxTileValue() >= 2048) {
+            win();
+            return;
+        }
+
         boolean isCreated = false;
         do {
             int x = getRandomNumber(SIDE);
@@ -45,6 +51,23 @@ public class Game2048 extends Game {
             }
         }
         while (!isCreated);
+    }
+
+    private int getMaxTileValue() {
+        int max = gameField[0][0];
+        for (int y = 0; y < SIDE; y++) {
+            for (int x = 0; x < SIDE; x++) {
+                if (gameField[y][x] > max) {
+                    max = gameField[y][x];
+                }
+            }
+        }
+        return max;
+    }
+
+    private void win() {
+        showMessageDialog(Color.NONE, "You win!", Color.WHITE, 50);
+        isGameStopped = true;
     }
 
     private void setCellColoredNumber(int x, int y, int value) {
@@ -101,19 +124,19 @@ public class Game2048 extends Game {
         }
     }
 
-    private void moveRight() {
-        rotateClockwise();
-        rotateClockwise();
-        moveLeft();
-        rotateClockwise();
-        rotateClockwise();
-    }
-
     private void moveUp() {
         rotateClockwise();
         rotateClockwise();
         rotateClockwise();
         moveLeft();
+        rotateClockwise();
+    }
+
+    private void moveRight() {
+        rotateClockwise();
+        rotateClockwise();
+        moveLeft();
+        rotateClockwise();
         rotateClockwise();
     }
 
