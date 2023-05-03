@@ -18,6 +18,11 @@ public class Game2048 extends Game {
 
     @Override
     public void onKeyPress(Key key) {
+        if (!canUserMove()) {
+            gameOver();
+            return;
+        }
+
         if (key == Key.UP) {
             moveUp();
         } else if (key == Key.RIGHT) {
@@ -69,6 +74,11 @@ public class Game2048 extends Game {
 
     private void win() {
         showMessageDialog(Color.NONE, "You win!", Color.WHITE, 50);
+        isGameStopped = true;
+    }
+
+    private void gameOver() {
+        showMessageDialog(Color.NONE, "You lose!", Color.RED, 50);
         isGameStopped = true;
     }
 
