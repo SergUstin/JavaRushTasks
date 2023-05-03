@@ -40,18 +40,11 @@ public class Beach implements Comparable<Beach> {
     }
 
     public static void main(String[] args) {
-        Beach beach = new Beach("Beach1", 200, 10);
-        Beach beach1 = new Beach("Beach2", 300, 5);
-        System.out.println(beach.compareTo(beach1));
-
 
     }
 
     @Override
     public int compareTo(Beach o) {
-        if (o.getDistance() < o.getDistance() && o.getQuality() > o.getQuality()) {
-            return 1;
-        }
         return 0;
     }
 }
