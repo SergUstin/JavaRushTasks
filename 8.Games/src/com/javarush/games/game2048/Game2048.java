@@ -23,6 +23,16 @@ public class Game2048 extends Game {
             return;
         }
 
+        if (isGameStopped) {
+            if (key == Key.SPACE) {
+                isGameStopped = false;
+                createGame();
+                drawScene();
+            } else {
+                return;
+            }
+        }
+        
         if (key == Key.UP) {
             moveUp();
         } else if (key == Key.RIGHT) {
@@ -38,6 +48,7 @@ public class Game2048 extends Game {
     }
 
     private void createGame() {
+        gameField = new int[SIDE][SIDE];
         createNewNumber();
         createNewNumber();
     }
