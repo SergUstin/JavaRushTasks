@@ -1,13 +1,12 @@
 package com.javarush.games.game2048;
 
-import com.javarush.engine.cell.Color;
-import com.javarush.engine.cell.Game;
-import com.javarush.engine.cell.Key;
+import com.javarush.engine.cell.*;
 
 public class Game2048 extends Game {
     private static final int SIDE = 4;
     private int[][] gameField = new int[SIDE][SIDE];
     private boolean isGameStopped = false;
+    private int score = 0;
 
     @Override
     public void initialize() {
@@ -18,6 +17,23 @@ public class Game2048 extends Game {
 
     @Override
     public void onKeyPress(Key key) {
+        if (isGameStopped) {
+            if (key == Key.SPACE) {
+                isGameStopped = false;
+                score = 0;
+                setScore(score);
+                createGame();
+                drawScene();
+            } else {
+                return;
+            }
+        }
+
+        if (!canUserMove()) {
+            gameOver();
+            return;
+        }
+
         if (key == Key.UP) {
             moveUp();
         } else if (key == Key.RIGHT) {
@@ -33,8 +49,24 @@ public class Game2048 extends Game {
     }
 
     private void createGame() {
+        gameField = new int[SIDE][SIDE];
         createNewNumber();
         createNewNumber();
+    }
+
+    private boolean canUserMove() {
+        for (int y = 0; y < SIDE; y++) {
+            for (int x = 0; x < SIDE; x++) {
+                if (gameField[y][x] == 0) {
+                    return true;
+                } else if (y < SIDE - 1 && gameField[y][x] == gameField[y + 1][x]) {
+                    return true;
+                } else if ((x < SIDE - 1) && gameField[y][x] == gameField[y][x + 1]) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     private void createNewNumber() {
@@ -67,24 +99,14 @@ public class Game2048 extends Game {
         return max;
     }
 
-    private void win() {
-        showMessageDialog(Color.NONE, "You win!", Color.WHITE, 50);
+    private void gameOver() {
+        showMessageDialog(Color.NONE, "GAME OVER!", Color.WHITE, 50);
         isGameStopped = true;
     }
 
-    private boolean canUserMove() {
-        for (int y = 0; y < SIDE; y++) {
-            for (int x = 0; x < SIDE; x++) {
-                if (gameField[y][x] == 0) {
-                    return true;
-                } else if (y < SIDE - 1 && gameField[y][x] == gameField[y + 1][x]) {
-                    return true;
-                } else if (x < SIDE - 1 && gameField[y][x] == gameField[y][x + 1]) {
-                    return true;
-                }
-            }
-        }
-        return false;
+    private void win() {
+        showMessageDialog(Color.NONE, "YOU WIN!", Color.WHITE, 50);
+        isGameStopped = true;
     }
 
     private void setCellColoredNumber(int x, int y, int value) {
@@ -188,6 +210,8 @@ public class Game2048 extends Game {
                 row[i] += row[i + 1];
                 row[i + 1] = 0;
                 result = true;
+                score += row[i];
+                setScore(score);
             }
         }
         return result;
