@@ -11,6 +11,13 @@ public class Solution {
     }
 
     public static void moveRing(char a, char b, char c, int numRings) {
-        //напишите тут ваш код
+        if (numRings == 1) {
+            System.out.printf("From %s to %s\n", a, b);
+        } else {
+            c = (char) (numRings - a - b);
+            moveRing(a, b, c, numRings - 1);
+            System.out.printf("From %s to %s\n", a, b, c);
+            moveRing(a, b, c, numRings);
+        }
     }
 }
