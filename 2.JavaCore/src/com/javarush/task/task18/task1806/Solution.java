@@ -14,14 +14,14 @@ public class Solution {
         // Создаем поток-записи-байт-в-файл
         FileOutputStream outputStream = new FileOutputStream("c:/result.txt");
 
-        if (inputStream.read() >= 0) {
+        if (inputStream.available() > 0) {
             //читаем весь файл одним куском
             byte[] buffer = new byte[inputStream.available()];
             int count = inputStream.read(buffer);
             outputStream.write(buffer, 0, count);
         }
 
-        inputStream.reset();
-        outputStream.flush();
+        inputStream.close();
+        outputStream.close();
     }
 }
