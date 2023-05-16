@@ -45,16 +45,15 @@ public class Solution {
         private List<String> result = new ArrayList<String>();
 
         public void run() {
-            String string;
-            try {
-                while (!Thread.currentThread().isInterrupted()) {
-                    if ((string = reader.readLine()) != null) {
-                        result.add(string);
+            while (!isInterrupted()) {
+                try {
+                    while (reader.ready()) {
+                        result.add(reader.readLine());
                         readStringCount.incrementAndGet();
                     }
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
             }
         }
 
