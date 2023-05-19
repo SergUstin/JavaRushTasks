@@ -21,13 +21,11 @@ public class Solution {
             }
         }
 
-
-
         int min = Integer.MAX_VALUE;
 
-        for (int i = 0; i < byteCountArray.length; i++) {
-            if (min > byteCountArray[i]) {
-                min = byteCountArray[i];
+        for (int j : byteCountArray) {
+            if (j > 0 && min > j) {
+                min = j;
             }
         }
 
@@ -40,7 +38,7 @@ public class Solution {
         }
 
         for (Integer integer : list) {
-            System.out.println(integer + " ");
+            System.out.print(integer + " ");
         }
     }
 }
