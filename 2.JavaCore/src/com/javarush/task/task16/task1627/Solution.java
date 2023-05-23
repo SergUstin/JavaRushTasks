@@ -2,6 +2,7 @@ package com.javarush.task.task16.task1627;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /* 
 Поиграем?
@@ -52,7 +53,19 @@ public class Solution {
 
         @Override
         public void run() {
-            //Add your code here - добавь код тут
+            try {
+                List<String> steps = OnlineGame.steps;
+                for (String step : steps) {
+                    Thread.sleep(1000 / rating);
+                    System.out.println(getName() + ":" + step);
+                    if (step.equals(steps.get(steps.size() - 1)) && !OnlineGame.isWinnerFound) {
+                        OnlineGame.isWinnerFound = true;
+                        System.out.println(getName() + ":победитель!");
+                    }
+                }
+            } catch (InterruptedException e) {
+                System.out.println(getName() + ":проиграл!");
+            }
         }
     }
 }
