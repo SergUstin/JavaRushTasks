@@ -28,7 +28,12 @@ public class Solution {
                     String productName = checkLength(args[1], 30);
                     String price = checkLength(args[2], 8);
                     String quantity = checkLength(args[3], 4);
-                    map.replace(id, value, productName + price + quantity);
+                    String result = productName + price + quantity;
+                    for (Map.Entry<String, String> entry : map.entrySet()) {
+                        if (id.contains(entry.getKey())) {
+                            map.replace(entry.getKey(), entry.getValue(), entry.setValue(result));
+                        }
+                    }
                 }
                 System.out.println(map);
             }
