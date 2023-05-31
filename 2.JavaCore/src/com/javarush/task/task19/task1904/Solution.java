@@ -35,23 +35,22 @@ public class Solution {
         @Override
         public Person read() throws IOException {
             String string = fileScanner.nextLine();
-            String[] strings = string.split(" ");
-            int day = Integer.parseInt(strings[3]);
-            int month = Integer.parseInt(strings[4]);
-            int year = Integer.parseInt(strings[5]);
-            Calendar calendar = new GregorianCalendar(year, month - 1, day);
-            Date date = calendar.getTime();
-            return new Person(strings[1], strings[2], strings[0], date);
-
-//            String[] strings = string.replaceAll("\\d", "").trim().split(" ");
-//            SimpleDateFormat format = new SimpleDateFormat("ddMMyyyy");
-//            Date date = null;
-//            try {
-//                date = format.parse(string.replaceAll("\\D", ""));
-//            } catch (ParseException e) {
-//                throw new RuntimeException(e);
-//            }
+//            String[] strings = string.split(" ");
+//            int day = Integer.parseInt(strings[3]);
+//            int month = Integer.parseInt(strings[4]);
+//            int year = Integer.parseInt(strings[5]);
+//            Calendar calendar = new GregorianCalendar(year, month - 1, day);
+//            Date date = calendar.getTime();
 //            return new Person(strings[1], strings[2], strings[0], date);
+
+            try {
+                String[] strings = string.replaceAll("\\d", "").trim().split(" ");
+                SimpleDateFormat format = new SimpleDateFormat("ddMMyyyy");
+                Date date = format.parse(string.replaceAll("\\D", ""));
+                return new Person(strings[1], strings[2], strings[0], date);
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            }
         }
 
         @Override
