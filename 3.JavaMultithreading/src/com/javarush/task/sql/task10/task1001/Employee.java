@@ -1,3 +1,4 @@
+/*
 package com.javarush.task.sql.task10.task1001;
 
 import jakarta.persistence.*;
@@ -47,3 +48,4 @@ public class Employee {
         this.smth = smth;
     }
 }
+*/
