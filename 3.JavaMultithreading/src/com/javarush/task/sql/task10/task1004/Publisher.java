@@ -1,3 +1,4 @@
+/*
 package com.javarush.task.sql.task10.task1004;
 
 import jakarta.persistence.*;
@@ -23,3 +24,4 @@ public class Publisher {
         this.name = name;
     }
 }
+*/

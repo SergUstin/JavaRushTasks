@@ -1,3 +1,4 @@
+/*
 package com.javarush.task.sql.task10.task1002;
 
 import org.hibernate.SessionFactory;
@@ -30,4 +31,4 @@ public class MySessionFactory {
         }
         return instance.sessionFactory;
     }
-}
+}*/

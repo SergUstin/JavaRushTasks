@@ -1,11 +1,14 @@
+/*
 package com.javarush.task.sql.task10.task1001;
 
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
-/* 
-task1001
 */
+/*
+task1001
+*//*
+
 
 public class Solution {
 
@@ -13,4 +16,4 @@ public class Solution {
         //напишите тут ваш код
 
     }
-}
+}*/

@@ -1,3 +1,4 @@
+/*
 package com.javarush.task.sql.task10.task1003;
 
 import jakarta.persistence.*;
@@ -57,3 +58,4 @@ public class Employee {
                 '}';
     }
 }
+*/
