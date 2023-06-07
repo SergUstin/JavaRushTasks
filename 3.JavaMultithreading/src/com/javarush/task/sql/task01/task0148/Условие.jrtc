@@ -1,6 +1,7 @@
 taskKey="com.javarush.task.sql.task01.task0148"\n\ntask0148
 
-Выбрать колонки required, identifier, description (в указанном порядке) из таблицы parts, у которых значение поля description не равное NULL
+Выбрать колонки required, identifier, description (в указанном порядке) из таблицы parts,
+у которых значение поля description не равное NULL
 
 
 Требования:
