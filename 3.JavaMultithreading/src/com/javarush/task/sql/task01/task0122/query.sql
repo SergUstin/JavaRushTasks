@@ -1,4 +1,4 @@
 -- Write your code here:
 select *
 from car
-where brand IN (mazda, toyota, nissan);
+where brand IN ('mazda', 'toyota', 'nissan');
