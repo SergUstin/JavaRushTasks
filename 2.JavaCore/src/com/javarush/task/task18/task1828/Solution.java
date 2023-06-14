@@ -14,23 +14,39 @@ public class Solution {
         String fileName = console.readLine();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
-            String id = "";
-            String value = "";
             while (reader.ready()) {
                 String string = reader.readLine();
-                id = string.substring(0, 8);
-                value = string.substring(8);
-                map.put(id, value);
+                String id = string.substring(0, 8).trim();
+                String value = string.substring(8);
+                if (!map.containsKey(id)) {
+                    map.put(id, value);
+                }
             }
-            System.out.println(map);
+
             if (args.length != 0) {
                 if (args[0].equals("-u")) {
-                    String productName = checkLength(args[1], 30);
-                    String price = checkLength(args[2], 8);
-                    String quantity = checkLength(args[3], 4);
-                    String result = productName + price + quantity;
+                    String id = args[1].trim();
+                    for (Map.Entry<String, String> entry : map.entrySet()) {
+                        if (id.equals(entry.getKey())) {
+                            map.put(id, checkLength(args[2], 30)
+                                    + checkLength(args[3], 8)
+                                    + checkLength(args[4], 4));
+                        }
+                    }
+                } else if (args[0].equals("-d")) {
+                    String id = args[1].trim();
+                    if (map.containsKey(id)) {
+                        map.remove(id);
+                    }
                 }
-                System.out.println(map);
+            }
+
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+                for (Map.Entry<String, String> entry : map.entrySet()) {
+                    String id = checkLength(entry.getKey(),8);
+                    String result = id + entry.getValue() + "\n";
+                    writer.write(result);
+                }
             }
         }
     }
