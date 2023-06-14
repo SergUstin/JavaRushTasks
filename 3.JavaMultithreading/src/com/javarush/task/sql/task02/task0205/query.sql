@@ -1,5 +1,4 @@
 -- Write your code here:
-select id, salary
+select id, if(salary > 1000, 'yes', 'no')
 from employee
-where if(salary > 1000, 'yes', 'no')
-limit 4;
+where id < 5;
