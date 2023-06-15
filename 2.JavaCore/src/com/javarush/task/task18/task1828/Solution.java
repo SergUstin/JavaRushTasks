@@ -35,17 +35,14 @@ public class Solution {
                     }
                 } else if (args[0].equals("-d")) {
                     String id = args[1].trim();
-                    if (map.containsKey(id)) {
-                        map.remove(id);
-                    }
+                    map.entrySet().removeIf(entry -> entry.getKey().equals(id));
                 }
             }
 
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
                 for (Map.Entry<String, String> entry : map.entrySet()) {
-                    String id = checkLength(entry.getKey(),8);
-                    String result = id + entry.getValue() + "\n";
-                    writer.write(result);
+                    writer.write(checkLength(entry.getKey(),8) + entry.getValue());
+                    writer.newLine();
                 }
             }
         }
