@@ -11,6 +11,43 @@ import java.util.TreeSet;
 */
 
 public class Solution {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        TreeMap<String, Double> map = new TreeMap<>();
+        String fileName = args[0];
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                double current = 0;
+                String[] split = line.split(" ");
+                String name = split[0];
+                double item = Double.parseDouble(split[1]);
+                if (map.containsKey(name)) {
+                    current = map.get(name);
+                    map.put(name, item + current);
+                } else {
+                    map.put(name, item);
+                }
+            }
+        }
+
+        double max = map.firstEntry().getValue();
+        for (Double value : map.values()) {
+            if (value > max) {
+                max = value;
+            }
+        }
+
+        TreeSet<String> set = new TreeSet<>();
+        for (String name : map.keySet()) {
+            if (max == map.get(name)) {
+                set.add(name);
+            }
+        }
+
+        for (String name : set) {
+            System.out.println(name);
+        }
+
     }
 }
