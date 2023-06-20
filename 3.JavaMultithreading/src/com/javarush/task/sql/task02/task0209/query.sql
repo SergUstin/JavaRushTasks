@@ -1,2 +1,2 @@
 -- Write your code here:
-select nullif(2, 2)
+select nullif(2, 1)
