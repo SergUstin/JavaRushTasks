@@ -1,8 +1,7 @@
 -- Write your code here:
 select
-    case
-        when is_full_time = 1 then true
-        when is_full_time = 0 then false
-        else is_full_time
+    case is_full_time
+        when 1 then 'true'
+        when 0 then 'false'
     end
 from students
