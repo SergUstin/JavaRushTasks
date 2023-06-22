@@ -1,4 +1,4 @@
 -- Write your code here:
-select count(*)
+select YEAR(date_of_birth), count(*)
 from employee
-group by date_of_birth;
+group by YEAR(date_of_birth);

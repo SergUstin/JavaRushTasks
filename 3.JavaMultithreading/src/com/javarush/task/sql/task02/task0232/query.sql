@@ -1,6 +1,4 @@
 -- Write your code here:
-select case is_full_time
-           when 'no' then 'заочник'
-           when 'yes' then 'стационар'
-           end
+select is_full_time, count(*)
 from students
+group by is_full_time;
