@@ -1,6 +1,7 @@
 taskKey="com.javarush.task.sql.task03.task0303"\n\ntask0303
 
-Требуется найти все записи из таблиц gyms и customers, где name из таблицы gyms равно name из таблицы customers.
+Требуется найти все записи из таблиц gyms и customers,
+где name из таблицы gyms равно name из таблицы customers.
 Используй WHERE.
 
 
