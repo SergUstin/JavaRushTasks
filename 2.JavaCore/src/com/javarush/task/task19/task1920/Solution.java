@@ -3,15 +3,16 @@ package com.javarush.task.task19.task1920;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.TreeMap;
-import java.util.TreeSet;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.*;
 
 /* 
 Самый богатый
 */
 
 public class Solution {
-    public static void main(String[] args) throws IOException {
+    public static void main1(String[] args) throws IOException {
         TreeMap<String, Double> map = new TreeMap<>();
         String fileName = args[0];
 
@@ -49,5 +50,17 @@ public class Solution {
             System.out.println(name);
         }
 
+    }
+
+    public static void main(String[] args) throws IOException {
+        Map<String, Double> map = new TreeMap<>();
+
+        Files.readAllLines(Path.of(args[0])).stream()
+                .map(str -> str.split(" "))
+                .forEach(strings -> map.merge(strings[0], Double.parseDouble(strings[1]), Double::sum));
+
+        map.entrySet().stream()
+                .filter(entry -> Objects.equals(entry.getValue(), map.values().stream().max(Double::compare).orElseThrow()))
+                .forEach(entry -> System.out.println(entry.getKey()));
     }
 }
