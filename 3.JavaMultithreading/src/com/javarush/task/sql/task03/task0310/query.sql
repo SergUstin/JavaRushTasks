@@ -1,4 +1,4 @@
 -- Write your code here:
-select gyms.location as gyms_city,
-       customers.location as cutomer_address
+select gyms.location as city,
+       customers.location as address
 from gyms, customers;
