@@ -1,3 +1,4 @@
 -- Write your code here:
-select name, group_concat(position)
+select position, group_concat(name)
 from employee
+group by position
