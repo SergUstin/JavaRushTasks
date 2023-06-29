@@ -1,5 +1,5 @@
 -- Write your code here:
-select rating, name, count(*)
+select rating, group_concat(name)
 from employee
-group by rating, name
+group by rating
 having rating > 2
