@@ -1,4 +1,7 @@
 -- Write your code here:
-select authors.year_born as author_country
+select year_born
 from authors
-where books.year_born <= books.date_released
+where year_born <= (
+    select max(date_released)
+    from books
+    )
