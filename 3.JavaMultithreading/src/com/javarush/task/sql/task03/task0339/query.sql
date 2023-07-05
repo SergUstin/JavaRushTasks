@@ -4,5 +4,5 @@ from authors
 where id in (
     select author_id
     from books
-    where genre in ('fantasy')
+    where genre = 'fantasy'
     )
