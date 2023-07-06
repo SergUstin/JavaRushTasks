@@ -3,5 +3,6 @@ select *
 from film_directors
 where full_name like (
     select concat(first_name, ' ', last_name)
-    having concat(first_name, ' ', last_name) = 1
+    from film_directors
+    limit 1
 )
