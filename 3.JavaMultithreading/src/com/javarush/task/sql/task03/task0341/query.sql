@@ -3,6 +3,7 @@ select *
 from films
 where title in (
     select title
-    where title like '%The' between 'r%'
+    from films
+    where title like 'The%r'
+    limit 1
     )
-limit 1
