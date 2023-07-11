@@ -1,4 +1,5 @@
 -- Write your code here:
-select *
+select city
 from cities
-where
+order by char_length(city) DESC
+limit 3

@@ -1,4 +1,4 @@
 -- Write your code here:
-select released, count(released)
+select released, count(*)
 from lego_set
 group by released;

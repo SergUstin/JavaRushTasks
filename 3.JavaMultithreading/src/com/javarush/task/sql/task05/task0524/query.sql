@@ -1,4 +1,5 @@
 -- Write your code here:
-select author.id as isbn, book.id as title
-from author, book
-where last_name like '%S';
+select isbn, title
+from book
+         left join author on author.id = book.author_id
+where author.last_name like 'S%'

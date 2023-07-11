@@ -1,4 +1,4 @@
 -- Write your code here:
 select title
 from task
-where exp_date
+where exp_date < '2022-10-01'

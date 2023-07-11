@@ -1,3 +1,3 @@
 -- Write your code here:
-select ceil(a), ceil(b)
+select ceil(a), ceiling(b)
 from math

@@ -1,8 +1,6 @@
 -- Write your code here:
 with tempTable (averageDOB) as (
-select avg(year_born),
-       id,
-       full_name
+select avg(year_born)
 from film_directors
 )
 select film_directors.id,

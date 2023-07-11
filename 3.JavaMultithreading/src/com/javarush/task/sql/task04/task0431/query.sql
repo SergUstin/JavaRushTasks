@@ -1,4 +1,7 @@
 -- Write your code here:
-select dayname(date), type = 'REGISTRATION'
+select dayname(date), count(*)
 from event
-where dayname(date) > 5
+where type = 'REGISTRATION'
+group by dayname(date)
+order by count(*) DESC
+limit 1
