@@ -1,2 +1,2 @@
 -- Write your code here:
-select curdate(), curtime(), now(), localtime()
+select now(), localtime()
