@@ -1,4 +1,4 @@
 -- Write your code here:
 select *
 from event
-where datediff(date_time, curdate()) < 20
+where datediff(curdate(), date_time) < 20
