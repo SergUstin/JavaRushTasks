@@ -1,2 +1,2 @@
 -- Write your code here:
-select year(), month(), day(), day(now()), month(now())
+select year(now()), month(now()), day(now()), dayofmonth(now())
