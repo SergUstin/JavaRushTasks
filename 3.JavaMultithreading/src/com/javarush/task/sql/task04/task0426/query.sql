@@ -1,3 +1,4 @@
 -- Write your code here:
-select year(date), month(date), day(date), year(sum(total)),
-       month(sum(total)), day(sum(total))
+select year(date), month(date), day(date), sum(total)
+from data
+group by year(date), month(date), day(date)
