@@ -1,3 +1,3 @@
 -- Write your code here:
-select length(name)
+select length(name), char_length(name)
 from employee
