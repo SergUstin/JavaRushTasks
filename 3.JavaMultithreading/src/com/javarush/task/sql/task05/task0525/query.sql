@@ -1,5 +1,6 @@
 -- Write your code here:
-select author.full_name as full_name, book.title
-from author, book
-where title > 1
-order by title;
+select full_name, count(*) as books
+from book
+         left join author on author.id = book.author_id
+group by book.author_id
+having books > 1
