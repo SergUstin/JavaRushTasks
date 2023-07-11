@@ -2,4 +2,4 @@
 select released, count(*) as total
 from lego_set
 group by released
-order by total
+order by total DESC;
