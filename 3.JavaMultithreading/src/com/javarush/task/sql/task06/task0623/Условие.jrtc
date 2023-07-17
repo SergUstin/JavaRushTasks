@@ -1,6 +1,7 @@
 taskKey="com.javarush.task.sql.task06.task0623"\n\ntask0623
 
-Напиши запрос, который удалит в таблице employee колонку с департаментом (department).
+Напиши запрос, который удалит в таблице employee колонку
+с департаментом (department).
 
 
 Требования:
