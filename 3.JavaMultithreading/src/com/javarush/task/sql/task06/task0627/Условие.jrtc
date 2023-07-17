@@ -1,6 +1,7 @@
 taskKey="com.javarush.task.sql.task06.task0627"\n\ntask0627
 
-Напиши запрос, который удалит индекс salary_index из таблицы employee. Используй ALTER TABLE.
+Напиши запрос, который удалит индекс salary_index из таблицы employee.
+Используй ALTER TABLE.
 
 
 Требования:
