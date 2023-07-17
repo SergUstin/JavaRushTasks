@@ -1,6 +1,7 @@
 taskKey="com.javarush.task.sql.task06.task0620"\n\ntask0620
 
-Напиши запрос, который добавит в таблицу employee колонку с зарплатой salary с типом INT.
+Напиши запрос, который добавит в таблицу employee колонку с
+зарплатой salary с типом INT.
 
 
 Требования:
