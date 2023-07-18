@@ -1,8 +1,11 @@
 taskKey="com.javarush.task.sql.task08.task0805"\n\ntask0805
 
-В методе main создай подключение к БД с помощью метода getConnection(String, String, String) класса DriverManager.
-Используй URL &quot;jdbc:mysql://localhost:3306/test&quot;, пользователя &quot;root&quot; и такой же пароль.
-Получи PreparedStatement используя метод prepareStatement, передав в качестве параметра переменную sql.
+В методе main создай подключение к БД с помощью метода
+getConnection(String, String, String) класса DriverManager.
+Используй URL &quot;jdbc:mysql://localhost:3306/test&quot;,
+пользователя &quot;root&quot; и такой же пароль.
+Получи PreparedStatement используя метод prepareStatement,
+передав в качестве параметра переменную sql.
 Добавь в таблицу всех сотрудников из множества employees.
 
 Закрой Statement и Connection.
