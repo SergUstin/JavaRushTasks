@@ -9,7 +9,20 @@ import java.sql.*;
 public class Solution {
 
     public static void main(String[] args) throws Exception {
-        //напишите тут ваш код
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test",
+                "root", "root");
 
+        try {
+            connection.setAutoCommit(false);
+
+            Statement statement = connection.createStatement();
+            int update = statement.executeUpdate("UPDATE employee set salary = salary + 2000 where name = 'Diego'");
+            int update1 = statement.executeUpdate("UPDATE employee set salary = salary + 500 where name = 'Amigo'");
+
+            connection.commit();
+
+        } catch (SQLException e) {
+            connection.rollback();
+        }
     }
 }
