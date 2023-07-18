@@ -12,7 +12,23 @@ public class Solution {
 
     public static void main(String[] args) throws Exception {
         String sql = "insert into employee (name, age, smth) values (?, ?, ?)";
-        //напишите тут ваш код
 
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test",
+                "root", "root");
+
+        PreparedStatement preparedStatement = con.prepareStatement(sql);
+
+        for (int i = 0; i < 5; i++) {
+            preparedStatement.setString(1, "employee_" + i);
+            preparedStatement.setInt(2, 30 + i);
+            preparedStatement.setString(3, "i = " + i);
+
+            preparedStatement.addBatch();
+        }
+
+        int[] ints = preparedStatement.executeBatch();
+
+        preparedStatement.close();
+        con.close();
     }
 }
