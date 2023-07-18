@@ -15,7 +15,19 @@ public class Solution {
         int age = 18;
         String smth = "Senior pomidor";
         String sql = "insert into employee (name, age, smth) values (?, ?, ?)";
-        //напишите тут ваш код
+
+
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test",
+                "root", "root");
+
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+        preparedStatement.setString(1, name);
+        preparedStatement.setInt(2, age);
+        preparedStatement.setString(3, smth);
+
+        preparedStatement.close();
+        connection.close();
 
     }
 }
