@@ -1,7 +1,9 @@
 taskKey="com.javarush.task.sql.task07.task0701"\n\ntask0701
 
-В методе main создай подключение к БД с помощью метода getConnection(String, String, String) класса DriverManager.
-Используй URL &quot;jdbc:mysql://localhost:3306/test&quot;, пользователя &quot;root&quot; и такой же пароль.
+В методе main создай подключение к БД с помощью метода
+getConnection(String, String, String) класса DriverManager.
+Используй URL &quot;jdbc:mysql://localhost:3306/test&quot;,
+пользователя &quot;root&quot; и такой же пароль.
 Закрой Connection.
 
 
