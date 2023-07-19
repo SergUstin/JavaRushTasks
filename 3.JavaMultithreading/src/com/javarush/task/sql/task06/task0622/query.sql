@@ -1,2 +1,2 @@
 -- Write your code here:
-alter table employee modify column salary float;
+alter table employee alter column salary float;
