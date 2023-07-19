@@ -9,19 +9,18 @@ task0704
 public class Solution {
 
     public static void main(String[] args) throws Exception {
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test",
-                "root", "root");
+        try (Connection connection = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/test", "root", "root");
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery("select * from employee")) {
 
-        Statement statement = connection.createStatement();
+            while (resultSet.next()) {
+                String name = resultSet.getNString("name");
+                System.out.println(name);
+            }
 
-        while (statement.executeQuery("select * from employee").next()) {
-            String name =
-                    statement.executeQuery("select * from employee")
-                            .getNString("name");
-            System.out.println(name + System.lineSeparator());
         }
 
-        connection.close();
-        statement.close();
+
     }
 }
