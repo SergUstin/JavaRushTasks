@@ -11,22 +11,17 @@ import java.util.Date;
 public class Solution {
 
     public static void main(String[] args) throws Exception {
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test",
-                "root", "root");
+        try (Connection connection = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/test", "root", "root");
 
-        Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery("select name, created from employee");
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery("select name, created from employee")) {
 
-        while (resultSet.next()) {
-            String name = resultSet.getNString("name");
-            LocalDateTime date = resultSet.getObject("created", LocalDateTime.class);
-            System.out.println(name + " " + date);
+            while (resultSet.next()) {
+                String name = resultSet.getNString("name");
+                LocalDateTime date = resultSet.getObject("created", LocalDateTime.class);
+                System.out.println(name + " " + date);
+            }
         }
-
-        resultSet.close();
-        statement.close();
-        connection.close();
-
-
     }
 }

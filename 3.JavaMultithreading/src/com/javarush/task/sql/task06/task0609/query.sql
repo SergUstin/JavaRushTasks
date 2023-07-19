@@ -6,4 +6,4 @@ select customers.street,
        customers.zip_code,
        customers.country
 from customers
-where customers.country != 'Testostan';
+where customers.country not like '%Testostan%';
