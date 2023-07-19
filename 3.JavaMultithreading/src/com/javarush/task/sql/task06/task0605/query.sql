@@ -4,5 +4,5 @@ create table if not exists users (
     first_name varchar(255) not null,
     last_name varchar(255) not null,
     date date default GETDATE() not null,
-    weight float(10)
+    weight float(10) null
 );
