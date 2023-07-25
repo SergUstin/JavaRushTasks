@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Hippodrome {
     private List<Horse> horses;
+    static Hippodrome game;
 
     public Hippodrome(List<Horse> horses) {
         this.horses = horses;
@@ -15,6 +16,14 @@ public class Hippodrome {
     }
 
     public static void main(String[] args) {
+        List<Horse> horseList = new ArrayList<>();
+        horseList.add(new Horse("Sam", 3.0, 0.0));
+        horseList.add(new Horse("Din", 3.0, 0.0));
+        horseList.add(new Horse("Jim", 3.0, 0.0));
+        game = new Hippodrome(horseList);
+
+
+        
         
     }
 }
