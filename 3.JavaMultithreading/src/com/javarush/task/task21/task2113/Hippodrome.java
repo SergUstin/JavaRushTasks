@@ -44,4 +44,18 @@ public class Hippodrome {
             Thread.sleep(200);            
         }
     }
+
+    public Horse getWinner() {
+        Horse result = horses.get(0);
+        for (Horse hors : horses) {
+            if (hors.getDistance() > result.getDistance()) {
+                result = hors;
+            }
+        }
+        return result;
+    }
+
+    public void printWinner() {
+        System.out.println("Winner is " + getWinner().getName() + "!");
+    }
 }
