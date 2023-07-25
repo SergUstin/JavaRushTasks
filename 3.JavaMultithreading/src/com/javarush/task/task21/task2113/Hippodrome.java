@@ -21,9 +21,10 @@ public class Hippodrome {
         horseList.add(new Horse("Din", 3.0, 0.0));
         horseList.add(new Horse("Jim", 3.0, 0.0));
         game = new Hippodrome(horseList);
-
-
-        
         
     }
+
+    public void move() {}
+    public void print() {}
+    public void run() {}
 }
