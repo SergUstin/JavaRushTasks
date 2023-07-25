@@ -4,24 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Hippodrome {
-    private List<Horse> horses;
     static Hippodrome game;
+    private List<Horse> horses;
 
-    public Hippodrome(List<Horse> horses) {
-        this.horses = horses;
-    }
-
-    public List<Horse> getHorses() {
-        return horses;
-    }
-
-    public static void main(String[] args) throws InterruptedException {
-        List<Horse> horseList = new ArrayList<>();
-        horseList.add(new Horse("Sam", 3.0, 0.0));
-        horseList.add(new Horse("Din", 3.0, 0.0));
-        horseList.add(new Horse("Jim", 3.0, 0.0));
-        game = new Hippodrome(horseList);
-        game.run();
+    public void run() throws InterruptedException {
+        for (int i = 0; i < 100; i++) {
+            move();
+            print();
+            Thread.sleep(200);
+        }
     }
 
     public void move() {
@@ -29,19 +20,13 @@ public class Hippodrome {
             hors.move();
         }
     }
+
     public void print() {
         for (Horse hors : horses) {
             hors.print();
         }
         for (int i = 0; i < 10; i++) {
             System.out.println();
-        }
-    }
-    public void run() throws InterruptedException {
-        for (int i = 0; i < 100; i++) {
-            move();
-            print();
-            Thread.sleep(200);            
         }
     }
 
@@ -57,5 +42,23 @@ public class Hippodrome {
 
     public void printWinner() {
         System.out.println("Winner is " + getWinner().getName() + "!");
+    }
+
+    public Hippodrome(List<Horse> horses) {
+        this.horses = horses;
+    }
+
+    public List<Horse> getHorses() {
+        return horses;
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        game = new Hippodrome(new ArrayList<>());
+        game.getHorses().add(new Horse("Sam", 3.0, 0.0));
+        game.getHorses().add(new Horse("Din", 3.0, 0.0));
+        game.getHorses().add(new Horse("Jim", 3.0, 0.0));
+
+        game.run();
+        game.printWinner();
     }
 }
