@@ -38,5 +38,12 @@ public class Horse {
     public void move() {
         distance += speed * Math.random();
     }
-    public void print() {}
+    public void print() {
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < (int) distance; i++) {
+            builder.append(".");
+        }
+        System.out.println(builder + name);
+
+    }
 }
