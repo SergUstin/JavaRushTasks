@@ -34,4 +34,7 @@ public class Horse {
     public void setDistance(double distance) {
         this.distance = distance;
     }
+
+    public void move() {}
+    public void print() {}
 }

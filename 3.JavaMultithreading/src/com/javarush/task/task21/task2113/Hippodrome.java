@@ -24,13 +24,17 @@ public class Hippodrome {
         
     }
 
-    public void move() {}
+    public void move() {
+        for (Horse hors : horses) {
+            hors.move();
+        }
+    }
     public void print() {}
     public void run() throws InterruptedException {
-        for (int i = 1; i <= 100; i++) {
+        for (int i = 0; i < 100; i++) {
             move();
             print();
-            Thread.sleep(200);
+            Thread.sleep(200);            
         }
     }
 }
