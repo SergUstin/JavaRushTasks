@@ -28,7 +28,6 @@ public class Solution {
             }
         }
 
-
         StringBuilder result = getLine(getWords(resultList));
         System.out.println(result.toString());
     }
