@@ -3,15 +3,25 @@ package com.javarush.task.task23.task2312;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Класс змея
+ */
 public class Snake {
-    private List<SnakeSection> sections;
-    private boolean isAlive;
+    //Направление движения змеи
     private SnakeDirection direction;
+    //Состояние - жива змея или нет.
+    private boolean isAlive;
+    //Список кусочков змеи.
+    private List<SnakeSection> sections;
 
     public Snake(int x, int y) {
-        sections = new ArrayList<SnakeSection>();
+        sections = new ArrayList<>();
         sections.add(new SnakeSection(x, y));
         isAlive = true;
+    }
+
+    public boolean isAlive() {
+        return isAlive;
     }
 
     public int getX() {
@@ -22,21 +32,16 @@ public class Snake {
         return sections.get(0).getY();
     }
 
+    public SnakeDirection getDirection() {
+        return direction;
+    }
+
     public void setDirection(SnakeDirection direction) {
         this.direction = direction;
     }
 
     public List<SnakeSection> getSections() {
-
         return sections;
-    }
-
-    public boolean isAlive() {
-        return isAlive;
-    }
-
-    public SnakeDirection getDirection() {
-        return direction;
     }
 
     /**
@@ -60,7 +65,24 @@ public class Snake {
      * Метод перемещает змею в соседнюю клетку.
      * Координаты клетки заданы относительно текущей головы с помощью переменных (dx, dy).
      */
-    void move(int dx, int dy) {
+    private void move(int dx, int dy) {
+    }
 
+    /**
+     * Метод проверяет - находится ли новая голова в пределах комнаты
+     */
+    void checkBorders(SnakeSection head) {
+        if ((head.getX() < 0 || head.getX() >= Room.game.getWidth()) || head.getY() < 0 || head.getY() >= Room.game.getHeight()) {
+            isAlive = false;
+        }
+    }
+
+    /**
+     * Метод проверяет - не совпадает ли голова с каким-нибудь участком тела змеи.
+     */
+    void checkBody(SnakeSection head) {
+        if (sections.contains(head)) {
+            isAlive = false;
+        }
     }
 }
