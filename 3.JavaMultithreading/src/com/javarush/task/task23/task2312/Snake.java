@@ -65,7 +65,30 @@ public class Snake {
      * Метод перемещает змею в соседнюю клетку.
      * Координаты клетки заданы относительно текущей головы с помощью переменных (dx, dy).
      */
-    private void move(int dx, int dy) {
+    void move(int dx, int dy) {
+        //Создаем новую голову - новый "кусочек змеи".
+        SnakeSection head = sections.get(0);
+        head = new SnakeSection(head.getX() + dx, head.getY() + dy);
+
+        //Проверяем - не вылезла ли голова за границу комнаты
+        checkBorders(head);
+        if (!isAlive) return;
+
+        //Проверяем - не пересекает ли змея  саму себя
+        checkBody(head);
+        if (!isAlive) return;
+
+        //Проверяем - не съела ли змея мышь.
+        Mouse mouse = Room.game.getMouse();
+        if (head.getX() == mouse.getX() && head.getY() == mouse.getY()) //съела
+        {
+            sections.add(0, head);                  //Добавили новую голову
+            Room.game.eatMouse();                   //Хвост не удаляем, но создаем новую мышь.
+        } else //просто движется
+        {
+            sections.add(0, head);                  //добавили новую голову
+            sections.remove(sections.size() - 1);   //удалили последний элемент с хвоста
+        }
     }
 
     /**
