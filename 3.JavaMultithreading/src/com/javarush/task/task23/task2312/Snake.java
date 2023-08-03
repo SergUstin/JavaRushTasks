@@ -9,7 +9,7 @@ public class Snake {
     private SnakeDirection direction;
 
     public Snake(int x, int y) {
-        sections = new ArrayList<>();
+        sections = new ArrayList<SnakeSection>();
         sections.add(new SnakeSection(x, y));
         isAlive = true;
     }
@@ -22,7 +22,12 @@ public class Snake {
         return sections.get(0).getY();
     }
 
+    public void setDirection(SnakeDirection direction) {
+        this.direction = direction;
+    }
+
     public List<SnakeSection> getSections() {
+
         return sections;
     }
 
@@ -34,11 +39,28 @@ public class Snake {
         return direction;
     }
 
-    public void setDirection(SnakeDirection direction) {
-        this.direction = direction;
+    /**
+     * Метод перемещает змею на один ход.
+     * Направление перемещения задано переменной direction.
+     */
+    public void move() {
+        if (!isAlive) return;
+
+        if (direction == SnakeDirection.UP)
+            move(0, -1);
+        else if (direction == SnakeDirection.RIGHT)
+            move(1, 0);
+        else if (direction == SnakeDirection.DOWN)
+            move(0, 1);
+        else if (direction == SnakeDirection.LEFT)
+            move(-1, 0);
     }
 
-    public void move() {
+    /**
+     * Метод перемещает змею в соседнюю клетку.
+     * Координаты клетки заданы относительно текущей головы с помощью переменных (dx, dy).
+     */
+    void move(int dx, int dy) {
 
     }
 }
