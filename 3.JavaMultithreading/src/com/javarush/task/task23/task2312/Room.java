@@ -17,6 +17,7 @@ public class Room {
         this.width = width;
         this.height = height;
         this.snake = snake;
+        game = this;
     }
 
     public Snake getSnake() {
