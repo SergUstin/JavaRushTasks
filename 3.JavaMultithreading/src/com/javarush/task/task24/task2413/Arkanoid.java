@@ -61,7 +61,21 @@ public class Arkanoid {
     }
 
     void move() {
+        ball.move();
+        stand.move();
+    }
 
+    void draw(Canvas canvas) {
+        //draw bricks
+        for (Brick brick : bricks) {
+            brick.draw(canvas);
+        }
+
+        //draw ball
+        ball.draw(canvas);
+
+        //draw stand
+        stand.draw(canvas);
     }
 
     public static void main(String[] args) {
