@@ -3,9 +3,9 @@ package com.javarush.task.task29.task2909.car;
 import java.util.Date;
 
 public class Car {
-    static public final int TRUCK = 0;
-    static public final int SEDAN = 1;
-    static public final int CABRIOLET = 2;
+    public static final int TRUCK = 0;
+    public static final int SEDAN = 1;
+    public static final int CABRIOLET = 2;
 
     double fuel;
 
@@ -18,7 +18,7 @@ public class Car {
     private boolean driverAvailable;
     private int numberOfPassengers;
 
-    public Car(int type, int numberOfPassengers) {
+    protected Car(int type, int numberOfPassengers) {
         this.type = type;
         this.numberOfPassengers = numberOfPassengers;
     }
@@ -78,5 +78,17 @@ public class Car {
         if (type == SEDAN)
             return 120;
         return 90;
+    }
+
+    public static Car create(int type, int numberOfPassengers) {
+        Car car = null;
+        if (TRUCK == type) {
+            car = new Truck(numberOfPassengers);
+        } else if (SEDAN == type) {
+            car = new Sedan(numberOfPassengers);
+        } else if (CABRIOLET == type) {
+            car = new Cabriolet(numberOfPassengers);
+        }
+        return car;
     }
 }
