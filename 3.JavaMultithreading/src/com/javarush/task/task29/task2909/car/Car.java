@@ -25,6 +25,7 @@ public class Car {
 
     public void fill(double numberOfLiters) {
         if (numberOfLiters < 0)
+
             throw new IndexOutOfBoundsException();
         fuel += numberOfLiters;
     }
