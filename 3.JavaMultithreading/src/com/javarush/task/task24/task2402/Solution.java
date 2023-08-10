@@ -34,6 +34,7 @@ public class Solution {
     public static class Test3 {
         protected Object c1one() throws CloneNotSupportedException {
             return new Test3();
+
         }
     }
 
