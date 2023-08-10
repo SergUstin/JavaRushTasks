@@ -6,9 +6,6 @@ public class UserHelper {
     private User userAnya = new User("Аня", "Смирнова", 10);
     private User userRoma = new User("Рома", "Виноградов", 30);
 
-    private boolean isManAnya = false;
-    private boolean isManRoma = true;
-
     public void printUsers() {
         userAnya.printInfo();
         userAnya.printAdditionalInfo();
@@ -26,11 +23,10 @@ public class UserHelper {
         int result = base.get() + age / 100;
         result *= hasWork ? 1.1 : 0.9;
         result *= hasHouse ? 1.1 : 0.9;
-        return result;
+        return result;        
     }
 
     public String getBossName(User user) {
-        Work work = user.getWork();
-        return work.getBoss();
+        return user.getBoss();
     }
 }
