@@ -1,25 +1,31 @@
 package com.javarush.task.task29.task2909.human;
 
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.experimental.FieldDefaults;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@Setter
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Student extends UniversityPerson {
 
-    private double averageGrade;
-    private Date beginningOfSession;
-    private Date endOfSession;
-    private int course;
+    @Getter
+    int course;
+    @Getter
+    double averageGrade;
+    Date endOfSession;
+    Date beginningOfSession;
 
     public Student(String name, int age, double averageGrade) {
         super(name, age);
         this.averageGrade = averageGrade;
     }
 
-    public int getCourse() {
-        return course;
-    }
-
+    @Override
     public void live() {
         learn();
     }
@@ -29,26 +35,6 @@ public class Student extends UniversityPerson {
 
     public void incAverageGrade(double delta) {
         setAverageGrade(getAverageGrade() + delta);
-    }
-
-    public void setAverageGrade(double averageGrade) {
-        this.averageGrade = averageGrade;
-    }
-
-    public void setCourse(int course) {
-        this.course = course;
-    }
-
-    public void setBeginningOfSession(Date beginningOfSession) {
-        this.beginningOfSession = beginningOfSession;
-    }
-
-    public void setEndOfSession(Date endOfSession) {
-        this.endOfSession = endOfSession;
-    }
-
-    public double getAverageGrade() {
-        return averageGrade;
     }
 
     @Override

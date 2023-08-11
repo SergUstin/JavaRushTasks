@@ -1,5 +1,8 @@
 package com.javarush.task.task29.task2909.car;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Date;
 
 public abstract class Car {
@@ -15,6 +18,8 @@ public abstract class Car {
 
     private int type;
 
+    @Getter
+    @Setter
     private boolean driverAvailable;
     private int numberOfPassengers;
 
@@ -57,15 +62,6 @@ public abstract class Car {
         return numberOfPassengers;
     }
 
-
-    public boolean isDriverAvailable() {
-        return driverAvailable;
-    }
-
-    public void setDriverAvailable(boolean driverAvailable) {
-        this.driverAvailable = driverAvailable;
-    }
-
     public void startMoving() {
         if (numberOfPassengers > 0) {
             fastenPassengersBelts();
@@ -82,14 +78,11 @@ public abstract class Car {
     public abstract int getMaxSpeed();
 
     public static Car create(int type, int numberOfPassengers) {
-        Car car = null;
-        if (TRUCK == type) {
-            car = new Truck(numberOfPassengers);
-        } else if (SEDAN == type) {
-            car = new Sedan(numberOfPassengers);
-        } else if (CABRIOLET == type) {
-            car = new Cabriolet(numberOfPassengers);
-        }
-        return car;
+        return switch (type) {
+            case TRUCK -> new Truck(numberOfPassengers);
+            case SEDAN -> new Sedan(numberOfPassengers);
+            case CABRIOLET -> new Cabriolet(numberOfPassengers);
+            default -> null;
+        };
     }
 }
