@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class Server {
@@ -37,14 +38,28 @@ public class Server {
         }
 
 
-
     }
 
     private static class Handler extends Thread {
         private Socket socket;
 
-        public Handler (Socket socket) {
+        public Handler(Socket socket) {
             this.socket = socket;
+        }
+
+        private String serverHandshake(Connection connection) throws IOException, ClassNotFoundException {
+            connection.send(new Message(MessageType.NAME_REQUEST, "Пожалуйста введите ваше имя - "));
+            Message message = connection.receive();
+            String name = message.getData();
+            if (MessageType.USER_NAME.equals(message.getType()) && Objects.nonNull(name)
+                    && !name.isEmpty() && !connectionMap.containsKey(name)) {
+                connectionMap.put(name, connection);
+                connection.send(new Message(MessageType.NAME_ACCEPTED, "Добро пожаловать в чат, " + name));
+                return name;
+            } else {
+                ConsoleHelper.writeMessage("Ошибка ввода имени пользователя!");
+                return serverHandshake(connection);
+            }
         }
     }
 }
