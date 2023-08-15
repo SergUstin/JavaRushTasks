@@ -10,7 +10,7 @@ import java.util.Set;
 */
 
 public class Solution {
-    public static enum Wheel {
+    public enum Wheel {
         FRONT_LEFT,
         FRONT_RIGHT,
         BACK_LEFT,
@@ -21,7 +21,14 @@ public class Solution {
         protected List<Wheel> wheels;
 
         public Car() {
-            //init wheels here
+            Set<Wheel> wheelSet = new HashSet<>(4);
+            String[] wheelNamesFromDb = loadWheelNamesFromDB();
+            if (wheelNamesFromDb.length != 4) throw new IllegalArgumentException();
+            for (String wheelName : wheelNamesFromDb) {
+                wheelSet.add(Wheel.valueOf(wheelName));
+            }
+            if (wheelSet.size() != 4) throw new IllegalArgumentException();
+            wheels = new ArrayList<>(wheelSet);
         }
 
         protected String[] loadWheelNamesFromDB() {
