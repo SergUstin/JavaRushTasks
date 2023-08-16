@@ -69,5 +69,18 @@ public class Server {
                 }
             }
         }
+
+        private void serverMainLoop(Connection connection, String userName) throws IOException, ClassNotFoundException {
+            while (true) {
+                Message message = connection.receive();
+                if (MessageType.TEXT == message.getType()) {
+                    sendBroadcastMessage(new Message(MessageType.TEXT, userName + ": " + message.getData()));
+                } else {
+                    ConsoleHelper.writeMessage("Ролученно мообщение от " +
+                            socket.getRemoteSocketAddress() +
+                            " тип сообщения не соотвествует протоколу!");
+                }
+            }
+        }
     }
 }
