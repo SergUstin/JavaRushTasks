@@ -6,21 +6,24 @@ public class TaskManipulator implements Runnable, CustomThreadManipulator {
 
     @Override
     public void run() {
-
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+        while (!Thread.currentThread().isInterrupted()) {
+            try {
+                System.out.println(Thread.currentThread().getName());
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                break;
+            }
         }
     }
 
     @Override
     public void start(String threadName) {
-
+        thread = new Thread(this, threadName);
+        thread.start();
     }
 
     @Override
     public void stop() {
-
+        thread.interrupt();
     }
 }
