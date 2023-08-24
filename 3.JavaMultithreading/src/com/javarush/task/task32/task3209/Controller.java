@@ -4,6 +4,7 @@ import javax.swing.text.Document;
 import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
 import java.io.File;
+import java.io.StringReader;
 import java.util.Objects;
 
 public class Controller {
@@ -41,5 +42,16 @@ public class Controller {
         document = (HTMLDocument) new HTMLEditorKit().createDefaultDocument();
         document.addUndoableEditListener(view.getUndoListener());
         view.update();
+    }
+
+    public void setPlainText(String text) {
+        resetDocument();
+        try (StringReader stringReader = new StringReader(text)) {
+            HTMLEditorKit htmlEditorKit = new HTMLEditorKit();
+            htmlEditorKit.read(stringReader, document, 0);
+        } catch (Exception e) {
+            ExceptionHandler.log(e);
+        }
+
     }
 }
