@@ -13,3 +13,8 @@ What can be improved in the developed editor:
 - Add the ability to download a document from the Internet.
 - Expand the editor's capabilities (inserting images, links, etc.)
 
+![image](https://github.com/SergUstin/JavaRushTasks/assets/104063797/bcf58681-b96b-4899-a917-3cf3647d158d)
+![image](https://github.com/SergUstin/JavaRushTasks/assets/104063797/d6d1154c-f812-4f58-9927-83158d89ac2d)
+
+
+
