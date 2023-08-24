@@ -73,8 +73,37 @@ public class Controller {
         view.setTitle("HTML редактор");
         currentFile = null;
     }
-    public void openDocument() {}
-    public void saveDocument() {}
+    public void openDocument() {
+        view.selectHtmlTab();
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileFilter(new HTMLFileFilter());
+        if (fileChooser.showOpenDialog(view) == JFileChooser.APPROVE_OPTION) {
+            currentFile = fileChooser.getSelectedFile();
+            resetDocument();
+            view.setTitle(currentFile.getName());
+
+            try (FileReader reader = new FileReader(currentFile)) {
+                new HTMLEditorKit().read(reader, document, 0);
+            } catch (IOException | BadLocationException e) {
+                ExceptionHandler.log(e);
+            }
+            view.resetUndo();
+        }
+    }
+
+    public void saveDocument() {
+        view.selectHtmlTab();
+        if (currentFile != null) {
+            try (FileWriter writer = new FileWriter(currentFile)) {
+                new HTMLEditorKit().write(writer, document, 0, document.getLength());
+            } catch (IOException | BadLocationException e) {
+                ExceptionHandler.log(e);
+            }
+        } else {
+            saveDocumentAs();
+        }
+    }
+
     public void saveDocumentAs() {
         view.selectHtmlTab();
         JFileChooser jFileChooser = new JFileChooser();
