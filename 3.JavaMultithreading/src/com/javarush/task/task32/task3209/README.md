@@ -7,14 +7,6 @@ In this project I learned:
 - Implement the interaction of program components using events, listeners, actions.
 - Strengthened my knowledge in the field of MVC.
 
-What can be improved in the developed editor:
-- Add a toolbar that repeats the functionality of the menu.
-- Add html tag highlighting on the second tab.
-- Add the ability to download a document from the Internet.
-- Expand the editor's capabilities (inserting images, links, etc.)
 
-![image](https://github.com/SergUstin/JavaRushTasks/assets/104063797/bcf58681-b96b-4899-a917-3cf3647d158d)
-![image](https://github.com/SergUstin/JavaRushTasks/assets/104063797/d6d1154c-f812-4f58-9927-83158d89ac2d)
-
-
-
+![image](https://github.com/SergUstin/JavaRushTasks/assets/104063797/4329deed-512d-42ad-855a-5be0f58ab236)
+![image](https://github.com/SergUstin/JavaRushTasks/assets/104063797/cec17860-e57d-4ebb-84d9-5d02b27ab6cf)
