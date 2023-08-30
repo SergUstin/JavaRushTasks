@@ -25,11 +25,8 @@ public class Snake {
 
         for (int i = 0; i < snakeParts.size(); i++) {
             GameObject part = snakeParts.get(i);
-            if (i == 0) {
-                game.setCellValueEx(part.x, part.y, Color.NONE, HEAD_SIGN, color, 75);
-            } else {
-                game.setCellValueEx(part.x, part.y, Color.NONE, BODY_SIGN, color, 75);
-            }
+            String sign = (i != 0) ? BODY_SIGN : HEAD_SIGN;
+            game.setCellValueEx(part.x, part.y, Color.NONE, sign, color, 75);
         }
     }
 
