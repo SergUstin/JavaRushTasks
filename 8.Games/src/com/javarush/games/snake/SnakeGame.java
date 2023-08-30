@@ -6,13 +6,14 @@ public class SnakeGame extends Game {
 
     public static final int WIDTH = 15;
     public static final int HEIGHT = 15;
+    private static final int GOAL = 28;
 
     private Snake snake;
     private Apple apple;
 
     private int turnDelay;
+    private int score;
     private boolean isGameStopped;
-    private static final int GOAL = 28;
 
     @Override
     public void initialize() {
@@ -20,44 +21,20 @@ public class SnakeGame extends Game {
         createGame();
     }
 
-    private void createGame() {
-        turnDelay = 300;
-        setTurnTimer(turnDelay);
-        snake = new Snake(WIDTH / 2, HEIGHT / 2);
-        createNewApple();
-        isGameStopped = false;
-        drawScene();
-    }
-
-    private void drawScene() {
-        for (int i = 0; i < WIDTH; i++) {
-            for (int j = 0; j < HEIGHT; j++) {
-                setCellValueEx(i, j, Color.DARKSEAGREEN, "");
-            }
-        }
-        snake.draw(this);
-        apple.draw(this);
-    }
-
-    private void createNewApple() {
-        Apple newApple;
-        do {
-            int x = getRandomNumber(WIDTH);
-            int y = getRandomNumber(HEIGHT);
-            newApple = new Apple(x, y);
-        } while (snake.checkCollision(newApple));
-        apple = newApple;
-    }
-
     @Override
     public void onTurn(int step) {
         snake.move(apple);
         if (!apple.isAlive) {
             createNewApple();
+            score += 5;
+            setScore(score);
+            turnDelay -= 10;
+            setTurnTimer(turnDelay);
         }
         if (!snake.isAlive) {
             gameOver();
         }
+
         if (snake.getLength() > GOAL) {
             win();
         }
@@ -79,6 +56,38 @@ public class SnakeGame extends Game {
         } else if (key == Key.DOWN) {
             snake.setDirection(Direction.DOWN);
         }
+    }
+
+    private void createGame() {
+        snake = new Snake(WIDTH / 2, HEIGHT / 2);
+        createNewApple();
+        isGameStopped = false;
+
+        drawScene();
+        turnDelay = 300;
+        setTurnTimer(turnDelay);
+        score = 0;
+        setScore(score);
+    }
+
+    private void drawScene() {
+        for (int x = 0; x < WIDTH; x++) {
+            for (int y = 0; y < HEIGHT; y++) {
+                setCellValueEx(x, y, Color.DARKSEAGREEN, "");
+            }
+        }
+        snake.draw(this);
+        apple.draw(this);
+    }
+
+    private void createNewApple() {
+        Apple newApple;
+        do {
+            int x = getRandomNumber(WIDTH);
+            int y = getRandomNumber(HEIGHT);
+            newApple = new Apple(x, y);
+        } while (snake.checkCollision(newApple));
+        apple = newApple;
     }
 
     private void gameOver() {
