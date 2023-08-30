@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Snake {
-    
+
     private final static String HEAD_SIGN = "\uD83D\uDC7E";
     private final static String BODY_SIGN = "\u26AB";
 
