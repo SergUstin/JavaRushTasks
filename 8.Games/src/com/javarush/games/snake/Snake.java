@@ -25,8 +25,11 @@ public class Snake {
 
         for (int i = 0; i < snakeParts.size(); i++) {
             GameObject part = snakeParts.get(i);
-            String sign = (i != 0) ? BODY_SIGN : HEAD_SIGN;
-            game.setCellValueEx(part.x, part.y, Color.NONE, sign, color, 75);
+            if (i == 0) {
+                game.setCellValueEx(part.x, part.y, Color.NONE, HEAD_SIGN, color, 75);
+            } else {
+                game.setCellValueEx(part.x, part.y, Color.NONE, BODY_SIGN, color, 75);
+            }
         }
     }
 
@@ -36,6 +39,11 @@ public class Snake {
                 || newHead.x < 0
                 || newHead.y >= SnakeGame.HEIGHT
                 || newHead.y < 0) {
+            isAlive = false;
+            return;
+        }
+
+        if (checkCollision(newHead)) {
             isAlive = false;
             return;
         }
@@ -78,5 +86,14 @@ public class Snake {
         }
 
         this.direction = direction;
+    }
+
+    public boolean checkCollision(GameObject gameObject) {
+        for (GameObject part : snakeParts) {
+            if (part.x == gameObject.x && part.y == gameObject.y) {
+                return true;
+            }
+        }
+        return false;
     }
 }
