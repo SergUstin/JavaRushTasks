@@ -11,6 +11,7 @@ public class MinesweeperGame extends Game {
     private int countMinesOnField;
     private int countFlags;
     private int countClosedTiles = SIDE * SIDE;
+    private int score;
 
     private static final String MINE = "\uD83D\uDCA3";
     private static final String FLAG = "\uD83D\uDEA9";
@@ -25,7 +26,7 @@ public class MinesweeperGame extends Game {
 
     @Override
     public void onMouseLeftClick(int x, int y) {
-        openTile(x,y);
+        openTile(x, y);
     }
 
     @Override
@@ -51,8 +52,8 @@ public class MinesweeperGame extends Game {
 
     private List<GameObject> getNeighbors(GameObject gameObject) {
         List<GameObject> result = new ArrayList<>();
-        for (int y = gameObject.y - 1; y <= gameObject.y + 1 ; y++) {
-            for (int x = gameObject.x - 1; x <= gameObject.x + 1 ; x++) {
+        for (int y = gameObject.y - 1; y <= gameObject.y + 1; y++) {
+            for (int x = gameObject.x - 1; x <= gameObject.x + 1; x++) {
                 if (y < 0 || y >= SIDE) {
                     continue;
                 }
@@ -106,6 +107,9 @@ public class MinesweeperGame extends Game {
         } else {
             setCellNumber(x, y, gameObject.countMineNeighbors);
         }
+
+        score += 5;
+        setScore(score);
 
         if (countClosedTiles == countMinesOnField) {
             win();
