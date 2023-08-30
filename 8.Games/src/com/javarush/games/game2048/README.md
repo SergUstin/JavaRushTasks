@@ -1,10 +1,11 @@
-# Minesweeper
+# Game 2048
 
-The Minesweeper game is implemented.
+Implemented the Game 2048.
 
 The code is written in a procedural style, because this was a condition of the task.
 
 JavaFX Engine
 
 ![img.png](img.png)
+
 
