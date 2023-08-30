@@ -20,5 +20,15 @@ public class Archiver {
         ExitCommand exitCommand = new ExitCommand();
         exitCommand.execute();
 
+        Operation operation = null;
+        while (operation != Operation.EXIT) {
+
+
+        }
+
+    }
+
+    public Operation askOperation() {
+        return null;
     }
 }
