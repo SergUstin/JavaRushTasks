@@ -93,4 +93,8 @@ public class Snake {
         }
         return false;
     }
+
+    public int getLength() {
+        return snakeParts.size();
+    }
 }
