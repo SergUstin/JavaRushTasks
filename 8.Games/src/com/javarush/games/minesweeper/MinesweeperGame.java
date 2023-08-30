@@ -9,8 +9,10 @@ public class MinesweeperGame extends Game {
     private static final int SIDE = 9;
     private GameObject[][] gameField = new GameObject[SIDE][SIDE];
     private int countMinesOnField;
+    private int countFlags;
 
     private static final String MINE = "\uD83D\uDCA3";
+    private static final String FLAG = "\uD83D\uDEA9";
 
 
     @Override
@@ -21,7 +23,7 @@ public class MinesweeperGame extends Game {
 
     @Override
     public void onMouseLeftClick(int x, int y) {
-        openTile(x, y);
+        openTile(x,y);
     }
 
     private void createGame() {
@@ -36,6 +38,7 @@ public class MinesweeperGame extends Game {
             }
         }
         countMineNeighbors();
+        countFlags = countMinesOnField;
     }
 
     private List<GameObject> getNeighbors(GameObject gameObject) {
