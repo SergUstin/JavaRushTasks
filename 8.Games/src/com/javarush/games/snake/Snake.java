@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Snake {
-
+    
     private final static String HEAD_SIGN = "\uD83D\uDC7E";
     private final static String BODY_SIGN = "\u26AB";
 
@@ -30,7 +30,7 @@ public class Snake {
         }
     }
 
-    public void move() {
+    public void move(Apple apple) {
         GameObject newHead = createNewHead();
         if (newHead.x >= SnakeGame.WIDTH
                 || newHead.x < 0
@@ -41,7 +41,12 @@ public class Snake {
         }
 
         snakeParts.add(0, newHead);
-        removeTail();
+
+        if (newHead.x == apple.x && newHead.y == apple.y) {
+            apple.isAlive = false;
+        } else {
+            removeTail();
+        }
     }
 
     public GameObject createNewHead() {
