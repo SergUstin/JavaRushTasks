@@ -2,27 +2,25 @@ package com.javarush.task.task31.task3110;
 
 import com.javarush.task.task31.task3110.command.*;
 
-import java.util.*;
-
-import static com.javarush.task.task31.task3110.Operation.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CommandExecutor {
-
-    private static final Map<Operation, Command> ALL_KNOWN_COMMANDS_MAP = new HashMap<>();
+    private static final Map<Operation, Command> allKnownCommandsMap = new HashMap<>();
 
     static {
-        ALL_KNOWN_COMMANDS_MAP.put(CREATE, new ZipCreateCommand());
-        ALL_KNOWN_COMMANDS_MAP.put(ADD, new ZipAddCommand());
-        ALL_KNOWN_COMMANDS_MAP.put(REMOVE, new ZipRemoveCommand());
-        ALL_KNOWN_COMMANDS_MAP.put(EXTRACT, new ZipExtractCommand());
-        ALL_KNOWN_COMMANDS_MAP.put(CONTENT, new ZipContentCommand());
-        ALL_KNOWN_COMMANDS_MAP.put(EXIT, new ExitCommand());
+        allKnownCommandsMap.put(Operation.CREATE, new ZipCreateCommand());
+        allKnownCommandsMap.put(Operation.ADD, new ZipAddCommand());
+        allKnownCommandsMap.put(Operation.REMOVE, new ZipRemoveCommand());
+        allKnownCommandsMap.put(Operation.EXTRACT, new ZipExtractCommand());
+        allKnownCommandsMap.put(Operation.CONTENT, new ZipContentCommand());
+        allKnownCommandsMap.put(Operation.EXIT, new ExitCommand());
     }
 
     private CommandExecutor() {
     }
 
     public static void execute(Operation operation) throws Exception {
-        ALL_KNOWN_COMMANDS_MAP.get(operation).execute();
+        allKnownCommandsMap.get(operation).execute();
     }
 }
