@@ -15,12 +15,12 @@ public class SnakeGame extends Game {
         createGame();
     }
 
-    private void createGame(){
-        snake = new Snake(WIDTH/2, HEIGHT/2);
+    private void createGame() {
+        snake = new Snake(WIDTH / 2, HEIGHT / 2);
         drawScene();
     }
 
-    private void drawScene(){
+    private void drawScene() {
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
                 setCellColor(i, j, Color.DARKSEAGREEN);
