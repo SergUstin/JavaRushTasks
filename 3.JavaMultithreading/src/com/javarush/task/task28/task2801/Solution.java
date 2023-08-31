@@ -15,11 +15,6 @@ public class Solution {
         Solution.switchTest(E1.C);
         Solution.switchTest(E3.D);
         Solution.switchTest(E2.D);
-        /* output
-        it's E1.C
-        undefined
-        it's E2.D
-         */
     }
 
     public static void switchTest(Enum obj) {
