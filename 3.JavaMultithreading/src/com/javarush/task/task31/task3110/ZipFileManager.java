@@ -25,4 +25,8 @@ public class ZipFileManager {
             zipOutputStream.closeEntry();
         }
     }
+
+    private void addNewZipEntry(ZipOutputStream zipOutputStream, Path filePath, Path fileName) throws Exception {
+
+    }
 }

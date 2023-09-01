@@ -11,7 +11,7 @@ public class FileManager {
     private Path rootPath;
     private List<Path> fileList;
 
-    public FileManager (Path rootPath) throws IOException {
+    public FileManager(Path rootPath) throws IOException {
         this.rootPath = rootPath;
         this.fileList = new ArrayList<>();
         collectFileList(rootPath);
@@ -22,9 +22,16 @@ public class FileManager {
     }
 
     private void collectFileList(Path path) throws IOException {
-        if (Files.isRegularFile(path)) {;
-            fileList.add(rootPath.relativize(path));
-        } else if (Files.isDirectory(path)) {
+        // Добавляем только файлы
+        if (Files.isRegularFile(path)) {
+            Path relativePath = rootPath.relativize(path);
+            fileList.add(relativePath);
+        }
+
+        // Добавляем содержимое директории
+        if (Files.isDirectory(path)) {
+            // Рекурсивно проходимся по всему содержмому директории
+            // Чтобы не писать код по вызову close для DirectoryStream, обернем вызов newDirectoryStream в try-with-resources
             try (DirectoryStream<Path> directoryStream = Files.newDirectoryStream(path)) {
                 for (Path file : directoryStream) {
                     collectFileList(file);
