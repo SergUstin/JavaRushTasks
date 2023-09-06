@@ -5,6 +5,7 @@ package com.javarush.task.jdk13.task43.task4301;
 */
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
+
 import java.util.Objects;
 
 public class Candidate {
@@ -25,11 +26,18 @@ public class Candidate {
         this.yearsExperience = yearsExperience;
     }
 
+
     @Override
     public boolean equals(Object obj) {
-
-
-        return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        return EqualsBuilder.reflectionEquals
+                (this, obj, true, null,
+                        "name", "age", "height", "weight");
     }
 
     @Override
