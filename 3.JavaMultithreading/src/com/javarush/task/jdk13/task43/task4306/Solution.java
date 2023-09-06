@@ -6,6 +6,8 @@ package com.javarush.task.jdk13.task43.task4306;
 
 //import org.apache.commons.lang3.ObjectUtils;
 
+import org.apache.commons.lang3.ObjectUtils;
+
 public class Solution {
 
     public static void main(String[] args) {
@@ -17,9 +19,25 @@ public class Solution {
     }
 
     public static String compareStudentGrades(Student studentOne, Student studentTwo) {
-        //напишите тут ваш код
-
-        return null;
+        int score = 0;
+        if (ObjectUtils.allNotNull(studentOne, studentTwo)) {
+            score += ObjectUtils.compare(studentOne.getMathScore(), studentTwo.getMathScore());
+            score += ObjectUtils.compare(studentOne.getPhysicsScore(), studentTwo.getPhysicsScore());
+            score += ObjectUtils.compare(studentOne.getChemistryScore(), studentTwo.getChemistryScore());
+            score += ObjectUtils.compare(studentOne.getBiologyScore(), studentTwo.getBiologyScore());
+            score += ObjectUtils.compare(studentOne.getGeographyScore(), studentTwo.getGeographyScore());
+            score += ObjectUtils.compare(studentOne.getHistoryScore(), studentTwo.getHistoryScore());
+            score += ObjectUtils.compare(studentOne.getEnglishScore(), studentTwo.getEnglishScore());
+        } else {
+            return "Make sure there are no null objects";
+        }
+        if (score > 0) {
+            return studentOne.getName() + " has a higher grades score";
+        } else if (score < 0) {
+            return studentTwo.getName() + " has a higher grades score";
+        }else {
+            return "Student grades scores are equal";
+        }
     }
 }
 
