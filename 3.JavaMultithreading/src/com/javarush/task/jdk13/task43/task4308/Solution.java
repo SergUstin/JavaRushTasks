@@ -1,7 +1,9 @@
 package com.javarush.task.jdk13.task43.task4308;
 
+import org.apache.commons.collections4.CollectionUtils;
+
 import java.util.Collection;
-import java.util.HashSet;
+import java.util.Collections;
 import java.util.Set;
 
 /* 
@@ -17,12 +19,7 @@ public class Solution {
     }
 
     public static Collection<Integer> compute(Set<Integer> setA, Set<Integer> setB) {
-        Set<Integer> result = new HashSet<>();
-        for (Integer i : setA) {
-            if (setB.contains(i)) {
-                result.add(i);
-            }
-        }
-        return result;
+        Collection<Integer> set = CollectionUtils.intersection(setA, setB);
+        return set;
     }
 }
