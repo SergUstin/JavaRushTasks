@@ -133,4 +133,7 @@ public class ZipFileManager {
             out.write(buffer, 0, len);
         }
     }
+
+    public void removeFiles(List<Path> pathList) throws Exception {
+    }
 }
