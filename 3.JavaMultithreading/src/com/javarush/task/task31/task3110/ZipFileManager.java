@@ -105,6 +105,29 @@ public class ZipFileManager {
         if (!Files.isRegularFile(zipFile)) {
             throw new WrongZipFileException();
         }
+        if (Files.notExists(outputFolder)) {
+            Files.createDirectories(outputFolder);
+        }
+
+        try (ZipInputStream zipInputStream = new ZipInputStream(Files.newInputStream(zipFile))) {
+            ZipEntry zipEntry = zipInputStream.getNextEntry();
+
+            while (zipEntry != null) {
+                Path path = outputFolder.resolve(zipEntry.getName());
+                if (Files.isDirectory(path)) {
+                    Files.createDirectories(path);
+                } else if (path.getParent() != null && Files.notExists(path)) { // родитель присутствует, но пути не существует
+                    // создаем / простраиваем пути и создаем файл
+                    Files.createDirectories(path.getParent());
+                    Files.createFile(path);
+                    try (OutputStream outputStream = Files.newOutputStream(path)) {
+                        copyData(zipInputStream, outputStream);
+                    }
+                }
+                zipEntry = zipInputStream.getNextEntry();
+            }
+            zipInputStream.closeEntry();
+        }
 
 
     }
