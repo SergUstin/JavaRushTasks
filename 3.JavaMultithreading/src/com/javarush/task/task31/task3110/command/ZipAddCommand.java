@@ -15,15 +15,15 @@ public class ZipAddCommand extends ZipCommand {
 
             ZipFileManager zipFileManager = getZipFileManager();
 
-            ConsoleHelper.writeMessage("Введите полное имя файла или директории для добавления:");
+            ConsoleHelper.writeMessage("Введите полное имя файла для добавления:");
             Path sourcePath = Paths.get(ConsoleHelper.readString());
+
             zipFileManager.addFile(sourcePath);
 
-            ConsoleHelper.writeMessage("Файл добавлен.");
+            ConsoleHelper.writeMessage("Добавление в архив завершено.");
 
         } catch (PathIsNotFoundException e) {
-            ConsoleHelper.writeMessage("Файл не добавлен.");
+            ConsoleHelper.writeMessage("Файл не был найден.");
         }
-
     }
 }
