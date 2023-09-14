@@ -20,7 +20,7 @@ public class Solution {
         print(getFields(task));
     }
 
-    public static Map<String, Object> getFields(Object object) throws Exception {
+    public static Map<String, Object> getFields1(Object object) throws Exception {
         Map<String, Object> map = new HashMap<>();
         Field[] fields = object.getClass().getDeclaredFields();
         for (Field field : fields) {
@@ -31,6 +31,19 @@ public class Solution {
                 map.put(key, value);
             }
         }
+        return map;
+    }
+
+    public static Map<String, Object> getFields(Object object) throws Exception {
+        Map<String, Object> map = new HashMap<>();
+        Arrays.stream(object.getClass().getDeclaredFields()).filter(field -> Modifier.isPrivate(field.getModifiers()))
+                .map(field -> {
+                    try {
+                        return map.put(field.getName(), field.get(object));
+                    } catch (IllegalAccessException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
         return map;
     }
 
