@@ -1,10 +1,13 @@
 package com.javarush.task.jdk13.task34.task3405;
 
+import lombok.SneakyThrows;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /* 
 Нарушение приватности
@@ -34,17 +37,15 @@ public class Solution {
         return map;
     }
 
-    public static Map<String, Object> getFields(Object object) throws Exception {
-        Map<String, Object> map = new HashMap<>();
-        Arrays.stream(object.getClass().getDeclaredFields()).filter(field -> Modifier.isPrivate(field.getModifiers()))
-                .map(field -> {
-                    try {
-                        return map.put(field.getName(), field.get(object));
-                    } catch (IllegalAccessException e) {
-                        throw new RuntimeException(e);
-                    }
-                });
-        return map;
+    @SneakyThrows
+    private static Object filedGetObject(Field field, Object object) {
+        return field.get(object);
+    }
+
+    public static Map<String, Object> getFields(Object object) {
+        return Arrays.stream(object.getClass().getDeclaredFields()).filter(field -> Modifier.isPrivate(field.getModifiers()))
+                .peek(field -> field.setAccessible(true))
+                .collect(Collectors.toMap(Field::getName, field -> filedGetObject(field, object), (a, b) -> b));
     }
 
     public static void print(Map<?, ?> fields) {
