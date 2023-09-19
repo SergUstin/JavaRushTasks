@@ -1,7 +1,7 @@
 # JavaRushTasks
 
 And this repository contains all the tasks I solved for the JavaRush course. More than 1,500 thousand tasks have been
-solved, more than 3,000 hours of Java code writing have been spent.
+solved, more than 2,000 hours of Java code writing have been spent.
 
 [Several small JavaFX games have been created](https://github.com/SergUstin/JavaRushTasks/tree/master/8.Games/src/com/javarush/games)
 
