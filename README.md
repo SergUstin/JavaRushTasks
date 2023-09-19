@@ -6,14 +6,14 @@ solved, more than 3,000 hours of Java code writing have been spent.
 [Several small JavaFX games have been created](https://github.com/SergUstin/JavaRushTasks/tree/master/8.Games/src/com/javarush/games)
 
 <div style = "display : flex; flex-wrap : wrap; width: 100%; height : 100%">
-  <div style = "width : 100px; height : 100px; margin: 0 5px">
-    <img src = "Game2048.png">  
+  <div style = "margin: 0 5px">
+    <img src = "Game2048.png"  width = "100" height = "100">  
   </div>
   <div style = " margin: 0 5px">
      <img src="mines.png" width = "100" height = "100">             
   </div>
-  <div style = "width : 100px; height : 100px; margin: 0 5px">
-      <img src="snake.png">
+  <div style = "margin: 0 5px">
+      <img src="snake.png"  width = "100" height = "100">
   </div>
 </div>
 
