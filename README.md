@@ -9,8 +9,8 @@ solved, more than 3,000 hours of Java code writing have been spent.
   <div style = "width : 100px; height : 100px; margin: 0 5px">
     <img src = "Game2048.png">  
   </div>
-  <div style = "width : 100px; height : 100px; margin: 0 5px">
-     <img src="mines.png">             
+  <div style = " margin: 0 5px">
+     <img src="mines.png" width = "100" height = "100">             
   </div>
   <div style = "width : 100px; height : 100px; margin: 0 5px">
       <img src="snake.png">
