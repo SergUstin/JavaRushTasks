@@ -1,2 +1,0 @@
-some_text
-some_text2
