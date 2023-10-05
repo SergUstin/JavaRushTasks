@@ -5,17 +5,11 @@ solved, more than 2,000 hours of Java code writing have been spent.
 
 [Several small JavaFX games have been created](https://github.com/SergUstin/JavaRushTasks/tree/master/8.Games/src/com/javarush/games)
 
-<div style = "display : flex; width: 100%; height : 100px">
-  <div style = "margin: 0 5px; flex-direction: row">
-    <img src = "Game2048.png"  width = "100" height = "100">  
-  </div>
-  <div style = " margin: 0 5px; flex-direction: row">
-     <img src="mines.png" width = "100" height = "100">             
-  </div>
-  <div style = "margin: 0 5px; flex-direction: row">
-      <img src="snake.png"  width = "100" height = "100">
-  </div>
-</div>
+<p style = "display: flex">
+  <img src = "Game2048.png"  width = "100" height = "100">  
+  <img src="mines.png" width = "100" height = "100"> 
+  <img src="snake.png"  width = "100" height = "100">
+</p>
 
 Several small projects have been implemented, such as:
 
