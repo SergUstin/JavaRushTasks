@@ -1,4 +1,27 @@
-taskKey="com.javarush.games.moonlander.part09"\n\nИгра Moon Lander (9/23)
+taskKey="com.javarush.games.moonlander.part10"\n\nИгра Moon Lander (10/23)
+
+Продолжим реализацию движения ракеты. Она должна двигаться и по вертикали, и по горизонтали.
+Давай внесем соответствующие изменения в метод move: теперь он будет принимать в качестве параметров состояния
+нажатия клавиш. Первый параметр &mdash; это isUpPressed, второй &mdash; isLeftPressed, третий &mdash; isRightPressed.
+Для установки скорости движения по оси X создадим переменную speedX. Значение этой переменной, как и
+speedY, будет изменяться в методе move в зависимости от нажатых клавиш. Также не забудь об изменении самих
+координат(x и y).
+
+
+Требования:
+1.	В классе Rocket должно существовать приватное поле speedX типа double, проинициализированное при объявлении значением 0.
+2.	В классе Rocket должен существовать публичный метод void move(boolean isUpPressed, boolean isLeftPressed, boolean isRightPressed).
+3.	В классе Rocket не должен существовать публичный метод void move().
+4.	В методе move(boolean, boolean, boolean) значение поля speedY должно уменьшаться на значение boost, если параметр метода isUpPressed равен true.
+5.	В методе move(boolean, boolean, boolean) значение поля speedY должно увеличиваться на значение boost, если параметр метода isUpPressed равен false.
+6.	В методе move(boolean, boolean, boolean) значение поля y должно быть увеличено на значение speedY после того, как поле speedY было изменено.
+7.	В методе move(boolean, boolean, boolean) значение поля speedX должно уменьшаться на значение boost, если параметр метода isLeftPressed равен true.
+8.	В методе move(boolean, boolean, boolean) значение поля speedX должно увеличиваться на значение boost, если параметр метода isRightPressed равен true.
+9.	В методе move(boolean, boolean, boolean) значение поля x должно быть увеличено на значение speedX после того, как поле speedX было изменено.
+10.	В методе onTurn(int) класса MoonLanderGame у объекта rocket должен быть вызван метод move(boolean, boolean, boolean) с параметрами: isUpPressed, isLeftPressed, isRightPressed.
+
+
+Игра Moon Lander (10/23)
 
 На этом этапе займемся реализацией методов onKeyPress и onKeyReleased. Как ты мог понять из названия, метод onKeyPress
 вызывается при нажатии любой клавиши, а метод onKeyReleased при отпускании. Перейдем к реализации метода onKeyPress. Он должен
@@ -7,18 +30,8 @@ taskKey="com.javarush.games.moonlander.part09"\n\nИгра Moon Lander (9/23)
 соответствующие флаги при отпускании клавиш в методе onKeyReleased.
 
 
-Требования:
-1.	В классе MoonLanderGame должен быть переопределен метод onKeyPress(Key) родительского класса Game.
-2.	Метод onKeyPress(Key) должен устанавливать полю isUpPressed значение true, если параметр метода равен Key.UP.
-3.	Если параметр метода onKeyPress(Key) равен Key.LEFT, метод должен устанавливать полю isLeftPressed значение true, а полю isRightPressed значение false.
-4.	Если параметр метода onKeyPress(Key) равен Key.RIGHT, метод должен устанавливать полю isRightPressed значение true, а полю isLeftPressed значение false.
-5.	В классе MoonLanderGame должен быть переопределен метод onKeyReleased(Key) родительского класса Game.
-6.	Метод onKeyReleased(Key) должен устанавливать полю isUpPressed значение false, если параметр метода равен Key.UP.
-7.	Метод onKeyReleased(Key) должен устанавливать полю isLeftPressed значение false, если параметр метода равен Key.LEFT.
-8.	Метод onKeyReleased(Key) должен устанавливать полю isRightPressed значение false, если параметр метода равен Key.RIGHT.
 
-
-Игра Moon Lander (9/23)
+Игра Moon Lander (10/23)
 
 Продолжим реализовывать движение ракеты. Давай добавим поля, которые будут ответственны за состояние клавиш,
 благодаря которым мы перемещаем ракету по экрану. Эти поля будут принимать только два значения: true, если клавиша нажата, иначе false.
@@ -28,7 +41,7 @@ taskKey="com.javarush.games.moonlander.part09"\n\nИгра Moon Lander (9/23)
 
 
 
-Игра Moon Lander (9/23)
+Игра Moon Lander (10/23)
 
 Давай займемся реализацией движения ракеты. Для начала создадим метод move() и в нем реализуем свободное падение.
 Падение должно происходить с ускорением, то есть нам нужно постоянно увеличивать его скорость. За скорость движения
@@ -43,7 +56,7 @@ taskKey="com.javarush.games.moonlander.part09"\n\nИгра Moon Lander (9/23)
 
 
 
-Игра Moon Lander (9/23)
+Игра Moon Lander (10/23)
 
 Ракета у нас уже есть, теперь займемся отрисовкой ландшафта. Его матрицу мы сделали для тебя: ты ее найдешь
 в классе ShapeMatrix. Ландшафт &mdash; это тоже игровой объект, поэтому создадим метод, который будет отвечать за инициализацию подобных объектов.
@@ -54,7 +67,7 @@ taskKey="com.javarush.games.moonlander.part09"\n\nИгра Moon Lander (9/23)
 
 
 
-Игра Moon Lander (9/23)
+Игра Moon Lander (10/23)
 
 Мы будем часто пользоваться такими параметрами как ширина и высота игрового объекта. Следовательно, вынесем их в
 отдельные переменные класса GameObject. Чтобы объект мог отрисовываться на игровом поле, добавим ему метод draw.
@@ -66,16 +79,6 @@ taskKey="com.javarush.games.moonlander.part09"\n\nИгра Moon Lander (9/23)
 
 В классе MoonLanderGame создадим переменную ракеты и инициализируем ее в createGame().
 Отрисуем ракету в drawScene() вызвав: rocket.draw(this);
-
-
-
-Игра Moon Lander (9/23)
-
-Кроме координат, у игрового объекта будет матрица, отвечающая за внешний вид. Давай добавим в класс GameObject
-переменную matrix типа int[][] для ее хранения. А теперь займемся посадочным лунным модулем.
-Для простоты будем называть его просто ракетой. Создадим класс Rocket, наследуемый от класса GameObject, так как ракета &mdash; это игровой объект.
-Обрати внимание, что у нас появился вспомогательный класс
-ShapeMatrix, который хранит матрицу, отвечающую за внешний вид ракеты.
 
 
 

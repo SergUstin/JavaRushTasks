@@ -20,7 +20,7 @@ public class MoonLanderGame extends Game {
 
     @Override
     public void onTurn(int step) {
-        rocket.move();
+        rocket.move(isUpPressed, isLeftPressed, isRightPressed);
         drawScene();
     }
 
