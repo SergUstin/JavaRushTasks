@@ -23,5 +23,10 @@
             <artifactId>httpclient</artifactId>
             <version>4.5.13</version>
         </dependency>
+        <dependency>
+            <groupId>cn.dustlight.messenger</groupId>
+            <artifactId>messenger-email</artifactId>
+            <version>0.0.4-alpha-5</version>
+        </dependency>
     </dependencies>
 </project>
