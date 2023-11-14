@@ -82,4 +82,8 @@ public class PlayerShip extends Ship {
             x = SpaceInvadersGame.WIDTH - width;
         }
     }
+
+    public void win() {
+        this.setStaticView(ShapeMatrix.WIN_PLAYER);
+    }
 }
