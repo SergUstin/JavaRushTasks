@@ -196,4 +196,22 @@ public class Model {
             score = previousScores.pop();
         }
     }
+
+    void randomMove() {
+        int n = ((int) (Math.random() * 100)) % 4;
+        switch (n) {
+            case 0:
+                left();
+                break;
+            case 1:
+                up();
+                break;
+            case 2:
+                down();
+                break;
+            case 3:
+                right();
+                break;
+        }
+    }
 }
