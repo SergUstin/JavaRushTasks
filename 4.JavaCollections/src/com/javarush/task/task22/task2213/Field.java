@@ -22,4 +22,20 @@ public class Field {
         this.width = width;
         matrix = new int[height][width];
     }
+
+    void print() {
+
+    }
+
+    void removeFullLines() {
+
+    }
+
+    Integer getValue(int x, int y) {
+        return null;
+    }
+
+    void setValue(int x, int y, int value) {
+
+    }
 }
