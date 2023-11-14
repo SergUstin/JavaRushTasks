@@ -50,6 +50,10 @@ public class PlayerShip extends Ship {
         }
     }
 
+    public Direction getDirection() {
+        return direction;
+    }
+
     public void move() {
         if (!isAlive) {
             return;
