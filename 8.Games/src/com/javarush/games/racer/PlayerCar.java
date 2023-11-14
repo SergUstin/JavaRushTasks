@@ -26,6 +26,10 @@ public class PlayerCar extends GameObject {
         }
     }
 
+    public void stop() {
+        matrix = ShapeMatrix.PLAYER_DEAD;
+    }
+
     public void setDirection(Direction direction) {
         this.direction = direction;
     }
