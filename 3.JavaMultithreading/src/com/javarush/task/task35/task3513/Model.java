@@ -1,9 +1,6 @@
 package com.javarush.task.task35.task3513;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 public class Model {
     private Tile[][] gameTiles;
@@ -234,5 +231,16 @@ public class Model {
             }
         }
         return false;
+    }
+
+    void autoMove() {
+        PriorityQueue<MoveEfficiency> moveEfficiencies = new PriorityQueue<>(4, Collections.reverseOrder());
+
+        moveEfficiencies.offer(getMoveEfficiency(this::left));
+        moveEfficiencies.offer(getMoveEfficiency(this::up));
+        moveEfficiencies.offer(getMoveEfficiency(this::right));
+        moveEfficiencies.offer(getMoveEfficiency(this::down));
+
+        moveEfficiencies.peek().getMove().move();
     }
 }

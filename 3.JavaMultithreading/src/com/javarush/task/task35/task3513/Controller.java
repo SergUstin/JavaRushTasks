@@ -48,6 +48,9 @@ public class Controller extends KeyAdapter {
                 case KeyEvent.VK_UP:
                     model.up();
                     break;
+                case KeyEvent.VK_A:
+                    model.autoMove();
+                    break;
                 case KeyEvent.VK_R:
                     model.randomMove();
                     break;
