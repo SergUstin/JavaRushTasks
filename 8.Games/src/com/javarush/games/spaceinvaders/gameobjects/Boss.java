@@ -10,6 +10,7 @@ public class Boss extends EnemyShip {
         super(x, y);
         this.setAnimatedView(true, ShapeMatrix.BOSS_ANIMATION_FIRST,
                 ShapeMatrix.BOSS_ANIMATION_SECOND);
+        score = 100;
     }
 
     @Override

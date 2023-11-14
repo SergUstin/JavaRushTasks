@@ -99,15 +99,22 @@ public class EnemyFleet {
         return ship.fire();
     }
 
-    public void verifyHit(List<Bullet> bullets) {
+    public int verifyHit(List<Bullet> bullets) {
+        if (bullets.isEmpty()) {
+            return 0;
+        }
+
+        int score = 0;
         for (Bullet bullet : bullets) {
             for (EnemyShip ship : ships) {
                 if (ship.isAlive && bullet.isAlive && ship.isCollision(bullet)) {
                     ship.kill();
                     bullet.kill();
+                    score += ship.score;
                 }
             }
         }
+        return score;
     }
 
     public void deleteHiddenShips() {
