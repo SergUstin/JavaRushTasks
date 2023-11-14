@@ -46,6 +46,10 @@ public class MoonLanderGame extends Game {
         } else if (Key.UP == key) {
             isUpPressed = true;
         }
+
+        if (isGameStopped && Key.SPACE == key) {
+            createGame();
+        }
     }
 
     @Override
@@ -102,6 +106,9 @@ public class MoonLanderGame extends Game {
     }
 
     private void gameOver() {
-
+        rocket.crash();
+        isGameStopped = true;
+        showMessageDialog(Color.NONE, "GAME OVER", Color.RED, 50);
+        stopTurnTimer();
     }
 }
