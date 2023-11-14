@@ -1,7 +1,6 @@
 package com.javarush.games.moonlander;
 
 import com.javarush.engine.cell.*;
-
 import java.util.Arrays;
 
 public class Rocket extends GameObject {
@@ -42,6 +41,7 @@ public class Rocket extends GameObject {
         }
         x += speedX;
         checkBorders();
+        switchFire(isUpPressed);
     }
 
     private void checkBorders() {
@@ -88,5 +88,21 @@ public class Rocket extends GameObject {
 
     public void crash() {
         matrix = ShapeMatrix.ROCKET_CRASH;
+    }
+
+    private void switchFire(boolean isPressed) {
+        if (isPressed) {
+            downFire.x = x + (width / 2);
+            downFire.y = y + height;
+            downFire.show();
+        } else {
+            downFire.hide();
+        }
+    }
+
+    @Override
+    public void draw(Game game) {
+        super.draw(game);
+        downFire.draw(game);
     }
 }
