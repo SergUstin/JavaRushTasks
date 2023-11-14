@@ -1,4 +1,22 @@
-taskKey="com.javarush.games.spaceinvaders.part01"\n\nИгра Space Invaders (1/34)
+taskKey="com.javarush.games.spaceinvaders.part02"\n\nИгра Space Invaders (2/34)
+
+Все игровые действия происходят в космосе. Для его отрисовки объявим метод drawField().
+Создавать все элементы игры будем в методе createGame(), а отрисовывать их &mdash; в методе drawScene().
+Все объекты создаются при запуске игры, поэтому в методе initialize() вызовем
+setScreenSize(int, int), а после него &mdash; метод createGame().
+
+
+Требования:
+1.	В классе SpaceInvadersGame должен существовать приватный метод void createGame().
+2.	В классе SpaceInvadersGame должен существовать приватный метод void drawScene().
+3.	В классе SpaceInvadersGame должен существовать приватный метод void drawField().
+4.	В методе drawScene() должен быть вызван метод drawField().
+5.	В методе createGame() должен быть вызван метод drawScene().
+6.	В методе initialize() должен быть вызван метод createGame().
+7.	В методе initialize() метод createGame() должен вызываться после setScreenSize(int, int).
+
+
+Игра Space Invaders (2/34)
 
 Сегодня мы предлагаем тебе написать увлекательную игру &mdash; Space Invaders. Как всегда, начнем с правил.
 
@@ -21,14 +39,5 @@ taskKey="com.javarush.games.spaceinvaders.part01"\n\nИгра Space Invaders (1/
 Чтобы успешно справиться с задачей Space Invaders, рекомендуем прочесть статью про раздел &quot;Игры&quot;. В ней ты найдешь информацию,
 которая будет полезна при написании игр.
 
-
-Требования:
-1.	Должен существовать публичный класс SpaceInvadersGame.
-2.	Класс SpaceInvadersGame должен быть наследником класса Game.
-3.	В классе SpaceInvadersGame должно существовать публичное статическое final int поле WIDTH, проинициализированное при объявлении значением 64.
-4.	В классе SpaceInvadersGame должно существовать публичное статическое final int поле HEIGHT, проинициализированное при объявлении значением 64.
-5.	В классе SpaceInvadersGame должен быть переопределен метод initialize() родительского класса Game.
-6.	В методе initialize() должен быть вызван метод setScreenSize(int, int) класса Game c параметрами WIDTH и HEIGHT.
-7.	В классе SpaceInvadersGame должен быть импорт всего содержимого пакета com.javarush.engine.cell.
 
 
