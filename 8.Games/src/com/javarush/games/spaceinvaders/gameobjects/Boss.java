@@ -8,7 +8,7 @@ public class Boss extends EnemyShip {
 
     public Boss(double x, double y) {
         super(x, y);
-        this.setAnimatedView(ShapeMatrix.BOSS_ANIMATION_FIRST,
+        this.setAnimatedView(true, ShapeMatrix.BOSS_ANIMATION_FIRST,
                 ShapeMatrix.BOSS_ANIMATION_SECOND);
     }
 
@@ -40,7 +40,7 @@ public class Boss extends EnemyShip {
         }
         isAlive = false;
 
-        this.setAnimatedView(
+        this.setAnimatedView(false,
                 ShapeMatrix.KILL_BOSS_ANIMATION_FIRST,
                 ShapeMatrix.KILL_BOSS_ANIMATION_SECOND,
                 ShapeMatrix.KILL_BOSS_ANIMATION_THIRD);
