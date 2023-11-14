@@ -44,6 +44,15 @@ public class PlayerShip extends Ship {
                 ShapeMatrix.DEAD_PLAYER);
     }
 
+    @Override
+    public Bullet fire() {
+        if (!isAlive) {
+            return null;
+        }
+
+        return new Bullet(x + 2, y - ShapeMatrix.BULLET.length, Direction.UP);
+    }
+
     public void setDirection(Direction newDirection) {
         if (newDirection != Direction.DOWN) {
             this.direction = newDirection;
