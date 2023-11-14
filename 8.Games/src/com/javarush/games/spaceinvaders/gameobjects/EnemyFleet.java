@@ -79,4 +79,20 @@ public class EnemyFleet {
             ship.move(currentDirection, speed);
         }
     }
+
+    public Bullet fire(Game game) {
+        if (ships.isEmpty()) {
+            return null;
+        }
+
+        int random = game.getRandomNumber(100 / SpaceInvadersGame.COMPLEXITY);
+        if (random > 0) {
+            return null;
+        }
+
+        int shipNumber = game.getRandomNumber(ships.size());
+        EnemyShip ship = ships.get(shipNumber);
+
+        return ship.fire();
+    }
 }
