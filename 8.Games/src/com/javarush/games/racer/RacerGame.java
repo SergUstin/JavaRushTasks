@@ -15,6 +15,7 @@ public class RacerGame extends Game {
     private boolean isGameStopped;
     private FinishLine finishLine;
     private ProgressBar progressBar;
+    private int score;
 
     @Override
     public void initialize() {
@@ -40,6 +41,8 @@ public class RacerGame extends Game {
             return;
         }
         moveAll();
+        score -= 5;
+        setScore(score);
         drawScene();
     }
 
@@ -52,6 +55,7 @@ public class RacerGame extends Game {
         drawScene();
         setTurnTimer(40);
         isGameStopped = false;
+        score = 3500;
     }
 
     private void drawScene() {
