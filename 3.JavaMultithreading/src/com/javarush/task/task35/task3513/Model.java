@@ -7,7 +7,7 @@ import java.util.List;
 public class Model {
     private Tile[][] gameTiles;
     private static final int FIELD_WIDTH = 4;
-    int maxTile = 0;
+    int maxTile = 2;
     int score = 0;
 
     public Model() {
@@ -45,20 +45,24 @@ public class Model {
         return list;
     }
 
-    private void compressTiles(Tile[] tiles) {
+    private boolean compressTiles(Tile[] tiles) {
         int insertPosition = 0;
+        boolean result = false;
         for (int i = 0; i < FIELD_WIDTH; i++) {
             if (!tiles[i].isEmpty()) {
                 if (i != insertPosition) {
                     tiles[insertPosition] = tiles[i];
                     tiles[i] = new Tile();
+                    result = true;
                 }
                 insertPosition++;
             }
         }
+        return result;
     }
 
-    private void mergeTiles(Tile[] tiles) {
+    private boolean mergeTiles(Tile[] tiles) {
+        boolean result = false;
         LinkedList<Tile> tilesList = new LinkedList<>();
         for (int i = 0; i < FIELD_WIDTH; i++) {
             if (tiles[i].isEmpty()) {
@@ -73,6 +77,7 @@ public class Model {
                 score += updatedValue;
                 tilesList.addLast(new Tile(updatedValue));
                 tiles[i + 1].value = 0;
+                result = true;
             } else {
                 tilesList.addLast(new Tile(tiles[i].value));
             }
@@ -81,6 +86,20 @@ public class Model {
 
         for (int i = 0; i < tilesList.size(); i++) {
             tiles[i] = tilesList.get(i);
+        }
+
+        return result;
+    }
+
+    public void left() {
+        boolean moveFlag = false;
+        for (int i = 0; i < FIELD_WIDTH; i++) {
+            if (compressTiles(gameTiles[i]) | mergeTiles(gameTiles[i])) {
+                moveFlag = true;
+            }
+        }
+        if (moveFlag) {
+            addTile();
         }
     }
 }
