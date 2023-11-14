@@ -84,7 +84,11 @@ public class Tetris {
         if (!figure.isCurrentPositionAvailable()) {
             figure.up();                    //поднимаем обратно
             figure.landed();                //приземляем
+
+            isGameOver = figure.getY() <= 1;//если фигурка приземлилась на самом верху - игра окончена
+
             field.removeFullLines();        //удаляем заполненные линии
+
             figure = FigureFactory.createRandomFigure(field.getWidth() / 2, 0); //создаем новую фигурку
         }
     }
