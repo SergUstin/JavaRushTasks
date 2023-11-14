@@ -42,6 +42,24 @@ public class SpaceInvadersGame extends Game {
         drawScene();
     }
 
+    @Override
+    public void onKeyPress(Key key) {
+        if (Key.SPACE == key) {
+            if (isGameStopped) {
+                createGame();
+                return;
+            }
+        }
+
+        if (Key.LEFT == key) {
+            playerShip.setDirection(Direction.LEFT);
+        }
+
+        if (Key.RIGHT == key) {
+            playerShip.setDirection(Direction.RIGHT);
+        }
+    }
+
     private void createGame() {
         isGameStopped = false;
         animationsCount = 0;
