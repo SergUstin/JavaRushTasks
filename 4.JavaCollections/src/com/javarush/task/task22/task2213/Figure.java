@@ -22,4 +22,36 @@ public class Figure {
         this.y = y;
         this.matrix = matrix;
     }
+
+    void left() {
+
+    }
+
+    void right() {
+
+    }
+
+    void down() {
+
+    }
+
+    void up() {
+
+    }
+
+    void downMaximum() {
+
+    }
+
+    void rotate() {
+
+    }
+
+    boolean isCurrentPositionAvailable() {
+        return true;
+    }
+
+    void landed() {
+
+    }
 }
