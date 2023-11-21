@@ -1,6 +1,5 @@
 package com.javarush.task.task25.task2515;
 
-
 /**
  * Класс для космического корабля
  */
