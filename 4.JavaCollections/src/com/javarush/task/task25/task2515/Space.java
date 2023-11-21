@@ -5,6 +5,8 @@ import java.util.List;
 
 public class Space {
 
+    public static Space game;
+
     private int width;
     private int height;
 
