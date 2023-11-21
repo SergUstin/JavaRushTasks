@@ -22,11 +22,31 @@ public class AmigoSet<E> extends AbstractSet<E> implements Set<E>, Cloneable, Se
 
     @Override
     public Iterator<E> iterator() {
-        return null;
+        return map.keySet().iterator();
     }
 
     @Override
     public int size() {
-        return 0;
+        return map.size();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return map.isEmpty();
+    }
+
+    @Override
+    public boolean contains(Object o) {
+        return map.containsKey(o);
+    }
+
+    @Override
+    public void clear() {
+        map.clear();
+    }
+
+    @Override
+    public boolean remove(Object o) {
+        return map.remove(o) == PRESENT;
     }
 }
