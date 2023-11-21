@@ -49,4 +49,15 @@ public class AmigoSet<E> extends AbstractSet<E> implements Set<E>, Cloneable, Se
     public boolean remove(Object o) {
         return map.remove(o) == PRESENT;
     }
+
+    @Override
+    public Object clone() {
+        try {
+            AmigoSet<E> newSet = (AmigoSet<E>) super.clone();
+            newSet.map = (HashMap<E, Object>) map.clone();
+            return newSet;
+        } catch (Exception e) {
+            throw new InternalError();
+        }
+    }
 }
