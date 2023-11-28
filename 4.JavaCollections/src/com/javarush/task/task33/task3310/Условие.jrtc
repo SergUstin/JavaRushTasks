@@ -1,4 +1,42 @@
-taskKey="com.javarush.task.task33.task3310.big14"\n\nShortener (14)
+taskKey="com.javarush.task.task33.task3310.big15"\n\nShortener (15)
+
+Напишем еще один тест, который проверит, что получить идентификатор для строки
+используя стратегию HashBiMapStorageStrategy можно быстрее, чем используя
+стратегию HashMapStorageStrategy.
+15.1.	Создай класс SpeedTest в пакете tests.
+15.2.	Добавь в класс метод long getTimeToGetIds(Shortener shortener, Set&lt;String&gt;
+strings, Set&lt;Long&gt; ids). Он должен возвращать время в миллисекундах необходимое
+для получения идентификаторов для всех строк из strings. Идентификаторы
+должны быть записаны в ids.
+15.3.	Добавь в класс метод long getTimeToGetStrings(Shortener shortener,
+Set&lt;Long&gt; ids, Set&lt;String&gt; strings). Он должен возвращать время в миллисекундах
+необходимое для получения строк для всех идентификаторов из ids. Строки
+должны быть записаны в strings.
+15.4.	Добавь в класс SpeedTest тест testHashMapStorage(). Он должен:
+15.4.1.	Создавать два объекта типа Shortener, один на базе
+HashMapStorageStrategy, второй на базе HashBiMapStorageStrategy. Назовем
+их shortener1 и shortener2.
+15.4.2.	Генерировать с помощью Helper 10000 строк и помещать их в сет со
+строками, назовем его origStrings.
+15.4.3.	Получать время получения идентификаторов для origStrings (вызывать
+метод getTimeToGetIds для shortener1, а затем для shortener2).
+15.4.4.	Проверять с помощью junit, что время, полученное в предыдущем пункте
+для shortener1 больше, чем для shortener2.
+15.4.5.	Получать время получения строк (вызывать метод getTimeToGetStrings
+для shortener1 и shortener2).
+15.4.6.	Проверять с помощью junit, что время, полученное в предыдущем пункте
+для shortener1 примерно равно времени для shortener2. Используй метод
+assertEquals(float expected, float actual, float delta). В качестве delta можно
+использовать 30, этого вполне достаточно для наших экспериментов.
+
+
+Требования:
+1.	Метод getTimeToGetStrings должен возвращать время в миллисекундах необходимое для получения всех строк для множества идентификаторов ids.
+2.	Метод getTimeToGetIds должен возвращать время в миллисекундах необходимое для получения всех идентификаторов для множества строк strings.
+3.	В методе testHashMapStorage должно быть выполнено сравнение времени получения множества ключей и множества значений для стратегий HashMapStorageStrategy и HashBiMapStorageStrategy.
+
+
+Shortener (15)
 
 Мы много раз тестировали наши стратегии с помощью метода testStrategy() класса
 Solution. Пришло время написать настоящие юнит тесты с использованием junit.
@@ -33,14 +71,8 @@ testStorage для него.
 
 
 
-Требования:
-1.	Класс FunctionalTest должен быть добавлен в созданный пакет tests.
-2.	В методе testStorage должны быть трижды вызваны методы getId и getString.
-3.	Тестовые методы перечисленные в условии задачи должны быть отмечены только аннотацией @Test.
-4.	В каждом тестовом методе должен содержаться вызов метода testStorage.
 
-
-Shortener (14)
+Shortener (15)
 
 Рассмотрим еще одну реализацию BiMap, на этот раз из Apache Commons Collections.
 13.1.	Скачай и подключи Apache Commons Collections 4.0.
@@ -52,7 +84,7 @@ Shortener (14)
 
 
 
-Shortener (14)
+Shortener (15)
 
 Задача, когда требуется создать Map, работающий в две стороны (по ключу получать
 значение, а по значению ключ) не такая уж и редкая. Такие коллекции уже
@@ -67,7 +99,7 @@ Google.
 
 
 
-Shortener (14)
+Shortener (15)
 
 Как ты заметил, получение идентификатора для строки требует намного больше
 времени, чем получение строки по идентификатору. Это ожидаемо и следует из
@@ -89,7 +121,7 @@ HashMapStorageStrategy.
 
 
 
-Shortener (14)
+Shortener (15)
 
 Создай и реализуй класс FileStorageStrategy. Он должен:
 10.1.	Реализовывать интерфейс StorageStrategy.
@@ -116,34 +148,6 @@ FileBucket[] table
 int size
 private long bucketSizeLimit = DEFAULT_BUCKET_SIZE_LIMIT
 long maxBucketSize
-
-
-
-Shortener (14)
-
-Напишем еще одну стратегию, назовем ее FileStorageStrategy. Она будет очень похожа
-на стратегию OurHashMapStorageStrategy, но в качестве ведер (англ. buckets) будут
-файлы. Я знаю, ты знаешь о каких buckets идет речь, если нет &ndash; повтори внутреннее
-устройство HashMap.
-9.1.	Создай класс FileBucket в пакете strategy.
-9.2.	Добавь в класс поле Path path. Это будет путь к файлу.
-9.3.	Добавь в класс конструктор без параметров, он должен:
-9.3.1.	Инициализировать path временным файлом. Файл должен быть размещен
-в директории для временных файлов и иметь случайное имя. Подсказка:
-Files.createTempFile.
-9.3.2.	Создавать новый файл, используя path. Если такой файл уже есть, то
-заменять его.
-9.3.3.	Обеспечивать удаление файла при выходе из программы. Подсказка:
-deleteOnExit().
-9.4.	Добавь в класс методы:
-9.4.1.	public long getFileSize(), он должен возвращать размер файла на который
-указывает path.
-9.4.2.	public void putEntry(Entry entry) - должен сериализовывать переданный entry в
-файл. Учти, каждый entry может содержать еще один entry.
-9.4.3.	public Entry getEntry() - должен забирать entry из файла. Если файл имеет нулевой
-размер, вернуть null.
-9.4.4.	public void remove() &ndash; удалять файл на который указывает path.
-Конструктор и методы не должны кидать исключения.
 
 
 
