@@ -15,4 +15,13 @@ public class CurrencyManipulator {
     public String getCurrencyCode() {
         return currencyCode;
     }
+
+    public void addAmount(int denomination, int count) {
+        if (denominations.containsKey(denomination)) {
+            denominations.put(denomination, denominations.get(denomination) + count);
+        } else {
+            denominations.put(denomination, count);
+        }
+    }
+
 }
