@@ -45,4 +45,23 @@ public class CustomTree extends AbstractList<String> implements Cloneable, Seria
     public boolean addAll(int index, Collection<? extends String> c) {
         throw new UnsupportedOperationException();
     }
+
+    static class Entry<T> implements Serializable {
+
+        String elementName;
+        boolean availableToAddLeftChildren, availableToAddRightChildren;
+        boolean newLineRootElement;
+        Entry<T> parent, leftChild, rightChild;
+
+        Entry(String name) {
+            elementName = name;
+            newLineRootElement = false;
+            availableToAddLeftChildren = true;
+            availableToAddRightChildren = true;
+        }
+
+        public boolean isAvailableToAddChildren() {
+            return this.availableToAddRightChildren || this.availableToAddLeftChildren;
+        }
+    }
 }
