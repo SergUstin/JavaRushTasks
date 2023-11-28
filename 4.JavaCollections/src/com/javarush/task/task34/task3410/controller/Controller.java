@@ -50,4 +50,5 @@ public class Controller implements EventListener {
     public GameObjects getGameObjects() {
         return model.getGameObjects();
     }
+
 }
