@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 class WithdrawCommand implements Command {
-    private ResourceBundle res = ResourceBundle.getBundle(CashMachine.class.getPackage().getName() + ".resources.withdraw");
+    private ResourceBundle res = ResourceBundle.getBundle(CashMachine.RESOURCE_PATH + "withdraw");
 
     @Override
     public void execute() throws InterruptOperationException {
