@@ -487,28 +487,40 @@ public class LogParser implements IPQuery, UserQuery, DateQuery, EventQuery, QLQ
         String field1;
         String field2 = null;
         String value1 = null;
+        Date after = null;
+        Date before = null;
         Pattern pattern = Pattern.compile("get (ip|user|date|event|status)"
-                + "( for (ip|user|date|event|status) = \"(.*?)\")?");
+                + "( for (ip|user|date|event|status) = \"(.*?)\")?"
+                + "( and date between \"(.*?)\" and \"(.*?)\")?");
         Matcher matcher = pattern.matcher(query);
         matcher.find();
         field1 = matcher.group(1);
         if (matcher.group(2) != null) {
             field2 = matcher.group(3);
             value1 = matcher.group(4);
+            if (matcher.group(5) != null) {
+                try {
+                    after = simpleDateFormat.parse(matcher.group(6));
+                    before = simpleDateFormat.parse(matcher.group(7));
+                } catch (ParseException e) {
+                }
+            }
         }
 
         if (field2 != null && value1 != null) {
             for (int i = 0; i < logEntities.size(); i++) {
-                if (field2.equals("date")) {
-                    try {
-                        if (logEntities.get(i).getDate().getTime() == simpleDateFormat.parse(value1).getTime()) {
+                if (dateBetweenDates(logEntities.get(i).getDate(), after, before)) {
+                    if (field2.equals("date")) {
+                        try {
+                            if (logEntities.get(i).getDate().getTime() == simpleDateFormat.parse(value1).getTime()) {
+                                result.add(getCurrentValue(logEntities.get(i), field1));
+                            }
+                        } catch (ParseException e) {
+                        }
+                    } else {
+                        if (value1.equals(getCurrentValue(logEntities.get(i), field2).toString())) {
                             result.add(getCurrentValue(logEntities.get(i), field1));
                         }
-                    } catch (ParseException e) {
-                    }
-                } else {
-                    if (value1.equals(getCurrentValue(logEntities.get(i), field2).toString())) {
-                        result.add(getCurrentValue(logEntities.get(i), field1));
                     }
                 }
             }
