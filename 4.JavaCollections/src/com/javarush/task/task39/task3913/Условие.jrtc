@@ -1,4 +1,52 @@
-taskKey="com.javarush.task.task39.task3913.big05"\n\nПарсер логов (5)
+taskKey="com.javarush.task.task39.task3913.big06"\n\nПарсер логов (6)
+
+Давай добавим поддержку параметра запроса в наш QL.
+Примеры запросов с параметром:
+1)	get ip for user = &quot;Vasya&quot;
+2)	get user for event = &quot;DONE_TASK&quot;
+3)	get event for date = &quot;03.01.2014 03:45:23&quot;
+Общий формат запроса с параметром:
+get field1 for field2 = &quot;value1&quot;
+Где: field1 - одно из полей: ip, user, date, event или status;
+field2 - одно из полей: ip, user, date, event или status;
+value1 - значение поля field2.
+
+Алгоритм обработки запроса следующий: просматриваем записи в логе, если поле
+field2 имеет значение value1, то добавляем поле field1 в множество, которое затем
+будет возвращено методом execute.
+
+Пример: Вызов метода execute(&quot;get event for date = \&quot;30.01.2014 12:56:22\&quot;&quot;) должен
+вернуть Set&lt;Event&gt;, содержащий только одно событие SOLVE_TASK. Какая именно
+задача решалась возвращать не нужно.
+
+Поддержка старого формата запросов должна сохраниться.
+
+
+Требования:
+1.	Вызов метода execute с параметром &quot;get ip for user = &quot;[any_user]&quot;&quot; должен возвращать множество уникальных IP адресов, с которых работал пользователь с именем [any_user].
+2.	Вызов метода execute с параметром &quot;get ip for date = &quot;[any_date]&quot;&quot; должен возвращать множество уникальных IP адресов, события с которых произведены в указанное время [any_date].
+3.	Вызов метода execute с параметром &quot;get ip for event = &quot;[any_event]&quot;&quot; должен возвращать множество уникальных IP адресов, у которых событие равно [any_event].
+4.	Вызов метода execute с параметром &quot;get ip for status = &quot;[any_status]&quot;&quot; должен возвращать множество уникальных IP адресов, события с которых закончились со статусом [any_status].
+5.	Вызов метода execute с параметром &quot;get user for ip = &quot;[any_ip]&quot;&quot; должен возвращать множество уникальных пользователей, которые работали с IP адреса [any_ip].
+6.	Вызов метода execute с параметром &quot;get user for date = &quot;[any_date]&quot;&quot; должен возвращать множество уникальных пользователей, которые произвели любое действие в указанное время [any_date].
+7.	Вызов метода execute с параметром &quot;get user for event = &quot;[any_event]&quot;&quot; должен возвращать множество уникальных пользователей, у которых событие равно [any_event].
+8.	Вызов метода execute с параметром &quot;get user for status = &quot;[any_status]&quot;&quot; должен возвращать множество уникальных пользователей, у которых статус равен [any_status].
+9.	Вызов метода execute с параметром &quot;get date for ip = &quot;[any_ip]&quot;&quot; должен возвращать множество уникальных дат, за которые с IP адреса [any_ip] произведено любое действие.
+10.	Вызов метода execute с параметром &quot;get date for user = &quot;[any_user]&quot;&quot; должен возвращать множество уникальных дат, за которые пользователь [any_user] произвел любое действие.
+11.	Вызов метода execute с параметром &quot;get date for event = &quot;[any_event]&quot;&quot; должен возвращать множество уникальных дат, за которые произошло событие равно [any_event].
+12.	Вызов метода execute с параметром &quot;get date for status = &quot;[any_status]&quot;&quot; должен возвращать множество уникальных дат, за которые произошло любое событие со статусом [any_status].
+13.	Вызов метода execute с параметром &quot;get event for ip = &quot;[any_ip]&quot;&quot; должен возвращать множество уникальных событий, которые произошли с IP адреса [any_ip].
+14.	Вызов метода execute с параметром &quot;get event for user = &quot;[any_user]&quot;&quot; должен возвращать множество уникальных событий, которые произвел пользователь [any_user].
+15.	Вызов метода execute с параметром &quot;get event for date = &quot;[any_date]&quot;&quot; должен возвращать множество уникальных событий, которые произошли во время [any_date].
+16.	Вызов метода execute с параметром &quot;get event for status = &quot;[any_status]&quot;&quot; должен возвращать множество уникальных событий, которые завершены со статусом [any_status].
+17.	Вызов метода execute с параметром &quot;get status for ip = &quot;[any_ip]&quot;&quot; должен возвращать множество уникальных статусов, которые произошли с IP адреса [any_ip].
+18.	Вызов метода execute с параметром &quot;get status for user = &quot;[any_user]&quot;&quot; должен возвращать множество уникальных статусов, которые произвел пользователь [any_user].
+19.	Вызов метода execute с параметром &quot;get status for date = &quot;[any_date]&quot;&quot; должен возвращать множество уникальных статусов, которые произошли во время [any_date].
+20.	Вызов метода execute с параметром &quot;get status for event = &quot;[any_event]&quot;&quot; должен возвращать множество уникальных статусов, у которых событие равно [any_event].
+21.	Поддержка старого формата запросов должна сохраниться.
+
+
+Парсер логов (6)
 
 Как ты заметил существует огромное количество комбинаций параметров для выбора
 определенных записей из лог файла. Покрыть их все соответствующими методами
@@ -26,16 +74,8 @@ get ip for user = &quot;Vasya&quot;
 для запроса date - тип объектов Date, для event и status - Event и Status соответственно.
 
 
-Требования:
-1.	Класс LogParser должен поддерживать интерфейс QLQuery.
-2.	Вызов метода execute(&quot;get ip&quot;) класса LogParser должен возвращать множество (Set&lt;String&gt;) содержащее все уникальные IP адреса.
-3.	Вызов метода execute(&quot;get user&quot;) класса LogParser должен возвращать множество (Set&lt;String&gt;) содержащее всех уникальных пользователей.
-4.	Вызов метода execute(&quot;get date&quot;) класса LogParser должен возвращать множество (Set&lt;Date&gt;) содержащее все уникальные даты.
-5.	Вызов метода execute(&quot;get event&quot;) класса LogParser должен возвращать множество (Set&lt;Event&gt;) содержащее все уникальные события.
-6.	Вызов метода execute(&quot;get status&quot;) класса LogParser должен возвращать множество (Set&lt;Status&gt;) содержащее все уникальные статусы.
 
-
-Парсер логов (5)
+Парсер логов (6)
 
 Реализуй интерфейс EventQuery у класса LogParser:
 4.1.	Метод getNumberOfAllEvents() должен возвращать количество событий за указанный период.
@@ -56,7 +96,7 @@ get ip for user = &quot;Vasya&quot;
 
 
 
-Парсер логов (5)
+Парсер логов (6)
 
 Реализуй интерфейс DateQuery у класса LogParser:
 3.1.	Метод getDatesForUserAndEvent() должен возвращать даты, когда определенный
@@ -78,7 +118,7 @@ get ip for user = &quot;Vasya&quot;
 
 
 
-Парсер логов (5)
+Парсер логов (6)
 
 Реализуй интерфейс UserQuery у класса LogParser:
 2.1.	Метод getAllUsers() должен возвращать всех пользователей.
@@ -100,7 +140,7 @@ get ip for user = &quot;Vasya&quot;
 
 
 
-Парсер логов (5)
+Парсер логов (6)
 
 Сегодня мы напишем парсер логов.
 Лог файл имеет следующий формат:
