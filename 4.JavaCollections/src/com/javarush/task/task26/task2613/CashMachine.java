@@ -14,5 +14,6 @@ public class CashMachine {
 
         CurrencyManipulator manipulatorByCurrencyCode = CurrencyManipulatorFactory.getManipulatorByCurrencyCode(currencyCode);
         manipulatorByCurrencyCode.addAmount(denomination, count);
+        manipulatorByCurrencyCode.getTotalAmount();
     }
 }
