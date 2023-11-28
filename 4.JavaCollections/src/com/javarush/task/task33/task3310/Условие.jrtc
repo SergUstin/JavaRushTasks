@@ -1,4 +1,25 @@
-taskKey="com.javarush.task.task33.task3310.big12"\n\nShortener (12)
+taskKey="com.javarush.task.task33.task3310.big13"\n\nShortener (13)
+
+Рассмотрим еще одну реализацию BiMap, на этот раз из Apache Commons Collections.
+13.1.	Скачай и подключи Apache Commons Collections 4.0.
+13.2.	Реализуй стратегию DualHashBidiMapStorageStrategy. Она должна:
+13.2.1.	Поддерживать интерфейс StorageStrategy.
+13.2.2.	Внутри иметь только одно поле data с типом DualHashBidiMap.
+13.3.	Проверь новую стратегию в методе main(). Запусти программу и сравни
+скорость работы шести стратегий.
+
+
+Требования:
+1.	Класс DualHashBidiMapStorageStrategy должен поддерживать интерфейс StorageStrategy.
+2.	В классе DualHashBidiMapStorageStrategy должно быть создано только одно поле data типа DualHashBidiMap.
+3.	Метод containsKey() должен проверять содержится ли ключ в data.
+4.	Метод containsValue() должен проверять содержится ли значение в data.
+5.	Метод put() должен добавлять пару (key, value) в data.
+6.	Метод getValue() должен возвращать значение полученное из data.
+7.	Метод getKey() должен возвращать ключ полученный из data.getKey().
+
+
+Shortener (13)
 
 Задача, когда требуется создать Map, работающий в две стороны (по ключу получать
 значение, а по значению ключ) не такая уж и редкая. Такие коллекции уже
@@ -12,17 +33,8 @@ Google.
 скорость работы пяти стратегий.
 
 
-Требования:
-1.	Класс HashBiMapStorageStrategy должен поддерживать интерфейс StorageStrategy.
-2.	В классе HashBiMapStorageStrategy должно быть создано только одно поле data типа HashBiMap.
-3.	Метод containsKey должен проверять содержится ли ключ в data.
-4.	Метод containsValue должен проверять содержится ли значение в data.
-5.	Метод put должен добавлять пару (key, value) в data.
-6.	Метод getValue должен возвращать значение полученное из data.
-7.	Метод getKey должен возвращать значение полученное из data.inverse().
 
-
-Shortener (12)
+Shortener (13)
 
 Как ты заметил, получение идентификатора для строки требует намного больше
 времени, чем получение строки по идентификатору. Это ожидаемо и следует из
@@ -44,7 +56,7 @@ HashMapStorageStrategy.
 
 
 
-Shortener (12)
+Shortener (13)
 
 Создай и реализуй класс FileStorageStrategy. Он должен:
 10.1.	Реализовывать интерфейс StorageStrategy.
@@ -74,7 +86,7 @@ long maxBucketSize
 
 
 
-Shortener (12)
+Shortener (13)
 
 Напишем еще одну стратегию, назовем ее FileStorageStrategy. Она будет очень похожа
 на стратегию OurHashMapStorageStrategy, но в качестве ведер (англ. buckets) будут
@@ -102,7 +114,7 @@ deleteOnExit().
 
 
 
-Shortener (12)
+Shortener (13)
 
 Добавь и реализуй класс OurHashMapStorageStrategy, используя класс Entry из
 предыдущей подзадачи. Класс OurHashMapStorageStrategy должен реализовывать
@@ -129,29 +141,6 @@ Shortener (12)
 похожий метод в HashMap.
 Можешь добавить в метод main класса Solution тестирование новой стратегии. Запусти
 и сравни время работы двух стратегий на одинаковом количестве элементов.
-
-
-
-Shortener (12)
-
-Приступим к реализации второй стратегии OurHashMapStorageStrategy. Она не будет
-использовать готовый HashMap из стандартной библиотеки, а будет сама являться
-коллекцией.
-
-7.1.	Разберись как работает стандартный HashMap, посмотри его исходники или
-погугли статьи на эту тему.
-7.2.	Если ты честно выполнил предыдущий пункт, то ты знаешь для чего используется
-класс Node поддерживающий интерфейс Entry внутри HashMap. Создай свой аналог внутри пакета
-strategy. Это должен быть обычный, не вложенный, не generic класс. Сделай его публичным.
-В отличии от класса Node из HashMap, наш класс будет поддерживать только
-интерфейс Serializable и будет называться Entry.
-7.3.	Добавь в Entry следующие поля: Long key, String value, Entry next, int hash. Как
-видишь, наша реализация будет поддерживать только тип Long для ключа и только
-String для значения. Область видимости полей оставь по умолчанию.
-7.4.	Добавь и реализуй конструктор Entry(int hash, Long key, String value, Entry next).
-7.5.	Добавь и реализуй методы: Long getKey(), String getValue(), int hashCode(), boolean equals() и String
-toString(). Реализовывать остальные методы оригинального Entry не нужно, мы
-пишем упрощенную версию.
 
 
 
