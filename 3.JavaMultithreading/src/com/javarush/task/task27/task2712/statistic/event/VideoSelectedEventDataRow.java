@@ -1,6 +1,5 @@
 package com.javarush.task.task27.task2712.statistic.event;
 
-
 import com.javarush.task.task27.task2712.ad.Advertisement;
 
 import java.util.Date;
@@ -17,5 +16,10 @@ public class VideoSelectedEventDataRow implements EventDataRow {
         this.optimalVideoSet = optimalVideoSet;
         this.totalDuration = totalDuration;
         this.currentDate = new Date();
+    }
+
+    @Override
+    public EventType getType() {
+        return EventType.SELECTED_VIDEOS;
     }
 }
