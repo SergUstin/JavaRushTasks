@@ -24,6 +24,9 @@ public class Model {
         this.eventListener = eventListener;
     }
 
+    public void move(Direction direction) {
+    }
+
     public void restart() {
         restartLevel(currentLevel);
     }
