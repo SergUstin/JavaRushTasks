@@ -1,4 +1,27 @@
-taskKey="com.javarush.task.task39.task3913.big07"\n\nПарсер логов (7)
+taskKey="com.javarush.task.task39.task3913.big08"\n\nПарсер логов (8)
+
+Ты реализовал парсер логов из разных файлов.
+
+Помимо парсера, ты реализовал свой собственный язык запросов. Он нужен для того, что бы минимизировать
+количество методов. Строчка в нашем лог-файле содержала всего 5 параметров плюс один вариативный параметр.
+При количестве параметров запроса два - это 25 возможный комбинаций, соответственно, что бы сделать любую
+выборку нужно реализовать 25 методов. Теперь представь, что параметров в строчке лог-файла не 5, а 10. И
+количество параметров запроса не 2, а 3. Уже нужно было бы написать 10 * 10 * 10 = 1000 методов.
+Чем сложнее лог - тем больше времени разработчик может себе сэкономить.
+
+Из рекомендаций и возможных улучшений можно реализовать запрос с количеством параметров 3, например такой:
+get field1 for field2 = &quot;value1&quot; and field3 = &quot;value2&quot; and date between &quot;after&quot;
+and &quot;before&quot;
+
+Из архитектурных улучшений в этой программе уместно использовать паттерн команда (для получения значения
+полей field, действуя единообразно). Реализуй его, если еще не сделал этого.
+
+
+Требования:
+1.	Поздравляю! Ты написал собственный парсер и свой язык запросов.
+
+
+Парсер логов (8)
 
 Теперь добавим поддержку дополнительного параметра запроса в наш QL.
 Дополнительный параметр будет отвечать за диапазон дат, которые нас интересуют.
@@ -13,32 +36,8 @@ get field1 for field2 = &quot;value1&quot; and date between &quot;after&quot; an
 Поддержка старых форматов запросов должна сохраниться.
 
 
-Требования:
-1.	Вызов метода execute с параметром &quot;get ip for user = &quot;[any_user]&quot; and date between &quot;[after]&quot; and &quot;[before]&quot;&quot; должен возвращать множество уникальных IP адресов, с которых работал пользователь с именем [any_user] в период между датами [after] и [before].
-2.	Вызов метода execute с параметром &quot;get ip for date = &quot;[any_date]&quot; and date between &quot;[after]&quot; and &quot;[before]&quot;&quot; должен возвращать множество уникальных IP адресов, события с которых произведены в указанное время [any_date] в период между датами [after] и [before].
-3.	Вызов метода execute с параметром &quot;get ip for event = &quot;[any_event]&quot; and date between &quot;[after]&quot; and &quot;[before]&quot;&quot; должен возвращать множество уникальных IP адресов, у которых событие равно [any_event] в период между датами [after] и [before].
-4.	Вызов метода execute с параметром &quot;get ip for status = &quot;[any_status]&quot; and date between &quot;[after]&quot; and &quot;[before]&quot;&quot; должен возвращать множество уникальных IP адресов, события с которых закончились со статусом [any_status] в период между датами [after] и [before].
-5.	Вызов метода execute с параметром &quot;get user for ip = &quot;[any_ip]&quot; and date between &quot;[after]&quot; and &quot;[before]&quot;&quot; должен возвращать множество уникальных пользователей, которые работали с IP адреса [any_ip] в период между датами [after] и [before].
-6.	Вызов метода execute с параметром &quot;get user for date = &quot;[any_date]&quot; and date between &quot;[after]&quot; and &quot;[before]&quot;&quot; должен возвращать множество уникальных пользователей, которые произвели любое действие в указанное время [any_date] в период между датами [after] и [before].
-7.	Вызов метода execute с параметром &quot;get user for event = &quot;[any_event]&quot; and date between &quot;[after]&quot; and &quot;[before]&quot;&quot; должен возвращать множество уникальных пользователей, у которых событие равно [any_event] в период между датами [after] и [before].
-8.	Вызов метода execute с параметром &quot;get user for status = &quot;[any_status]&quot; and date between &quot;[after]&quot; and &quot;[before]&quot;&quot; должен возвращать множество уникальных пользователей, у которых статус равен [any_status] в период между датами [after] и [before].
-9.	Вызов метода execute с параметром &quot;get date for ip = &quot;[any_ip]&quot; and date between &quot;[after]&quot; and &quot;[before]&quot;&quot; должен возвращать множество уникальных дат, за которые с IP адреса [any_ip] произведено любое действие в период между датами [after] и [before].
-10.	Вызов метода execute с параметром &quot;get date for user = &quot;[any_user]&quot; and date between &quot;[after]&quot; and &quot;[before]&quot;&quot; должен возвращать множество уникальных дат, за которые пользователь [any_user] произвел любое действие в период между датами [after] и [before].
-11.	Вызов метода execute с параметром &quot;get date for event = &quot;[any_event]&quot; and date between &quot;[after]&quot; and &quot;[before]&quot;&quot; должен возвращать множество уникальных дат, за которые произошло событие равно [any_event] в период между датами [after] и [before].
-12.	Вызов метода execute с параметром &quot;get date for status = &quot;[any_status]&quot; and date between &quot;[after]&quot; and &quot;[before]&quot;&quot; должен возвращать множество уникальных дат, за которые произошло любое событие со статусом [any_status] в период между датами [after] и [before].
-13.	Вызов метода execute с параметром &quot;get event for ip = &quot;[any_ip]&quot; and date between &quot;[after]&quot; and &quot;[before]&quot;&quot; должен возвращать множество уникальных событий, которые произошли с IP адреса [any_ip] в период между датами [after] и [before].
-14.	Вызов метода execute с параметром &quot;get event for user = &quot;[any_user]&quot; and date between &quot;[after]&quot; and &quot;[before]&quot;&quot; должен возвращать множество уникальных событий, которые произвел пользователь [any_user] в период между датами [after] и [before].
-15.	Вызов метода execute с параметром &quot;get event for date = &quot;[any_date]&quot; and date between &quot;[after]&quot; and &quot;[before]&quot;&quot; должен возвращать множество уникальных событий, которые произошли во время [any_date] в период между датами [after] и [before].
-16.	Вызов метода execute с параметром &quot;get event for status = &quot;[any_status]&quot; and date between &quot;[after]&quot; and &quot;[before]&quot;&quot; должен возвращать множество уникальных событий, которые завершены со статусом [any_status] в период между датами [after] и [before].
-17.	Вызов метода execute с параметром &quot;get status for ip = &quot;[any_ip]&quot; and date between &quot;[after]&quot; and &quot;[before]&quot;&quot; должен возвращать множество уникальных статусов, которые произошли с IP адреса [any_ip] в период между датами [after] и [before].
-18.	Вызов метода execute с параметром &quot;get status for user = &quot;[any_user]&quot; and date between &quot;[after]&quot; and &quot;[before]&quot;&quot; должен возвращать множество уникальных статусов, которые произвел пользователь [any_user] в период между датами [after] и [before].
-19.	Вызов метода execute с параметром &quot;get status for date = &quot;[any_date]&quot; and date between &quot;[after]&quot; and &quot;[before]&quot;&quot; должен возвращать множество уникальных статусов, которые произошли во время [any_date] в период между датами [after] и [before].
-20.	Вызов метода execute с параметром &quot;get status for event = &quot;[any_event]&quot; and date between &quot;[after]&quot; and &quot;[before]&quot;&quot; должен возвращать множество уникальных статусов, у которых событие равно [any_event] в период между датами [after] и [before].
-21.	Поддержка формата запросов из задания 5 должна сохраниться.
-22.	Поддержка формата запросов из задания 6 должна сохраниться.
 
-
-Парсер логов (7)
+Парсер логов (8)
 
 Давай добавим поддержку параметра запроса в наш QL.
 Примеры запросов с параметром:
@@ -63,7 +62,7 @@ field2 имеет значение value1, то добавляем поле fiel
 
 
 
-Парсер логов (7)
+Парсер логов (8)
 
 Как ты заметил существует огромное количество комбинаций параметров для выбора
 определенных записей из лог файла. Покрыть их все соответствующими методами
@@ -92,7 +91,7 @@ get ip for user = &quot;Vasya&quot;
 
 
 
-Парсер логов (7)
+Парсер логов (8)
 
 Реализуй интерфейс EventQuery у класса LogParser:
 4.1.	Метод getNumberOfAllEvents() должен возвращать количество событий за указанный период.
@@ -113,7 +112,7 @@ get ip for user = &quot;Vasya&quot;
 
 
 
-Парсер логов (7)
+Парсер логов (8)
 
 Реализуй интерфейс DateQuery у класса LogParser:
 3.1.	Метод getDatesForUserAndEvent() должен возвращать даты, когда определенный
@@ -132,28 +131,6 @@ get ip for user = &quot;Vasya&quot;
 пользователь написал сообщение.
 3.8.	Метод getDatesWhenUserDownloadedPlugin() должен возвращать даты, когда
 пользователь скачал плагин.
-
-
-
-Парсер логов (7)
-
-Реализуй интерфейс UserQuery у класса LogParser:
-2.1.	Метод getAllUsers() должен возвращать всех пользователей.
-2.2.	Метод getNumberOfUsers() должен возвращать количество уникальных пользователей.
-2.3.	Метод getNumberOfUserEvents() должен возвращать количество уникальных событий от определенного пользователя.
-2.4.	Метод getUsersForIP() должен возвращать пользователей с определенным IP.
-Несколько пользователей могут использовать один и тот же IP.
-2.5.	Метод getLoggedUsers() должен возвращать пользователей, которые делали логин.
-2.6.	Метод getDownloadedPluginUsers() должен возвращать пользователей, которые скачали плагин.
-2.7.	Метод getWroteMessageUsers() должен возвращать пользователей, которые отправили сообщение.
-2.8.	Метод getSolvedTaskUsers(Date after, Date before) должен возвращать
-пользователей, которые решали любую задачу.
-2.9.	Метод getSolvedTaskUsers(Date after, Date before, int task) должен возвращать
-пользователей, которые решали задачу с номером task.
-2.10.	Метод getDoneTaskUsers(Date after, Date before) должен возвращать
-пользователей, которые решили любую задачу.
-2.11.	Метод getDoneTaskUsers(Date after, Date before, int task) должен возвращать
-пользователей, которые решили задачу с номером task.
 
 
 
