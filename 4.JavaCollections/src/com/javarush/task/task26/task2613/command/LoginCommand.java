@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 class LoginCommand implements Command {
     private ResourceBundle validCreditCards = ResourceBundle.getBundle(CashMachine.class.getPackage().getName() + ".resources.verifiedCards");
 
+
     @Override
     public void execute() throws InterruptOperationException {
         ConsoleHelper.writeMessage("Logging in...");
