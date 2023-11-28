@@ -1,4 +1,32 @@
-taskKey="com.javarush.task.task28.task2810.big09"\n\nAggregator (9)
+taskKey="com.javarush.task.task28.task2810.big10"\n\nAggregator (10)
+
+У View есть метод update, в него передается список вакансий для отображения.
+Очевидно, что этот метод будет вызываться моделью, т.к. только она получает данные.
+Пришло время создать модель.
+
+1. Создай класс Model в пакете model.
+
+2. Добавь два приватных поля - 1) вью, 2) массив провайдеров.
+
+3. Создай конструктор с двумя параметрами - 1) вью, 2) массив провайдеров (аргумент переменной длинны - varargs).
+На неправильные данные кинь IllegalArgumentException.
+
+4. Создай публичный метод void selectCity(String city).
+
+5. Реализуй логику метода selectCity:
+5.1. получить вакансии с каждого провайдера,
+5.2. обновить вью списком вакансий из п.5.1.
+
+
+Требования:
+1.	Создай класс Model в пакете model.
+2.	В классе Model добавь два приватных поля: вью и массив провайдеров.
+3.	Создай конструктор с двумя параметрами: вью и массив провайдеров (аргумент переменной длинны - varargs). На неправильные данные кинь IllegalArgumentException.
+4.	В класс Model добавь метод public void selectCity(String city).
+5.	Реализуй логику метода selectCity(String). Он должен получать вакансии с каждого провайдера и передавать их все в метод update у вью.
+
+
+Aggregator (10)
 
 Пришло время чуток порефакторить код.
 Почитай в инете про паттерн MVC(Model-View-Controller).
@@ -16,14 +44,8 @@ void setController(Controller controller);
 3. В классе HtmlView создай приватное поле controller типа Controller, используй его для реализации одного из методов интерфейса.
 
 
-Требования:
-1.	В корне задачи создай новый пакет view, в нем создай интерфейс View.
-2.	Интерфейс View должен содержать два метода согласно заданию.
-3.	В пакете view создай новый класс HtmlView, который реализует View.
-4.	В классе HtmlView создай приватное поле controller типа Controller и для его инициализации реализуй один из методов интерфейса.
 
-
-Aggregator (9)
+Aggregator (10)
 
 Запусти снова программу в дебаг моде.
 Скопируй полученное значение document.html() в созданный ранее html файл.
@@ -58,7 +80,7 @@ site и url нужно взять из атрибута со значением 
 
 
 
-Aggregator (9)
+Aggregator (10)
 
 Чтобы сайт поиска работы знал, кто к нему коннектится, проставим Request Headers в наш запрос.
 
@@ -84,7 +106,7 @@ Aggregator (9)
 
 
 
-Aggregator (9)
+Aggregator (10)
 
 1. В папке куда ты скачал либу org.jsoup:jsoup:1.9.2 из maven репозитория, найди jar-архив jsoup-1.9.2.jar или jsoup-1.9.2-sources.jar.
 В нем найди пакет examples, посмотри классы в этом пакете.
@@ -105,7 +127,7 @@ Alt+Insert - equals() and hashCode().
 
 
 
-Aggregator (9)
+Aggregator (10)
 
 1. Добавь в интерфейс Strategy метод getVacancies(String searchString), который будет возвращать список вакансий.
 
@@ -119,45 +141,6 @@ Aggregator (9)
 Внутри метода пройдись по всем провайдерам и собери с них все вакансии, добавь их в список. Выведи количество вакансий в консоль.
 
 5. Исправь NPE, если появляется это исключение (поставь заглушку, например Collections.emptyList()).
-
-
-
-Aggregator (9)
-
-Открой сайт поиска работы - https://grc.ua/ и https://hh.ru/
-В строке поиска набери &quot;java Kiev&quot;, снизу перейди на вторую страницу, т.к. урлы часто отличаются на первой странице и далее.
-У меня получилась такая ссылка:
-https://grc.ua/search/vacancy?text=java+Kiev&amp;page=1 и https://hh.ru/search/vacancy?text=java+Kiev&amp;page=1
-Из этого следует, что
-1) если тебе нужно будет фильтровать по городу, то ты добавишь его после слова java, разделив их знаком &quot;+&quot;,
-2) нумерация страниц начинается с 0.
-
-Итак, ссылка будет примерно такой:
-https://grc.ua/search/vacancy?text=java+ADDITIONAL_VALUE&amp;page=PAGE_VALUE
-
-1. Из полученной ссылки в HHStrategy создай приватную строковую константу URL_FORMAT, которая будет передаваться в String.format().
-В результате подстановки константы URL_FORMAT в String.format(URL_FORMAT, &quot;Kiev&quot;, 3) с такими параметрами, результат должен быть таким:
-&quot;https://grc.ua/search/vacancy?text=java+Kiev&amp;page=3&quot;
-или
-&quot;https://hh.ru/search/vacancy?text=java+Kiev&amp;page=3&quot;
-Для этого скопируй ссылку в код и нажми на ней нужную комбинацию клавиш.
-Ctrl+Alt+C(Constant) - создание констант,
-Ctrl+Alt+M(Method) - создание методов,
-Ctrl+Alt+V(Variable) - создание переменных.
-
-2. Тебе нужно программно получить исходный код страницы. Это HTTP запрос. Тебе понадобится Java HTML Parser.
-Хороший парсер jsoup, будешь использовать его. Мы будем использовать версию 1.9.2.
-
-3. Скачать и подключить новые либы можно так:
-В IDEA открой Project Structure (в меню File).
-Слева выбери Project Settings -&gt; Libraries, в окошке справа сверху нажми &quot;+&quot;.
-Выбери &quot;From Maven...&quot;. В окне поиска введи &quot;org.jsoup:jsoup:1.9.2&quot;. Поставь галочку на &quot;Download to:&quot; и выбери куда скачать либу.
-Также поставь галочки на &quot;Transitive dependencies&quot;, &quot;Sources&quot;.
-В окне Choose Modules выбери модуль 4.JavaCollections.
-
-4. Прочитай дополнительный материал к лекции в Сообществе.
-https://javarush.ru/groups/posts/2007-legkiy-parsing-html-s-pomojshjhju-jsoup
-https://javarush.ru/groups/posts/1086-3-primera-kak-razobratjh-html-fayl-v-java-ispoljhzuja-jsoup
 
 
 
